@@ -12,7 +12,7 @@ void Main(array<String^>^ args)
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-
+	//test
 	CppWinForm1::MyForm form;
 	Application::Run(%form);
 }

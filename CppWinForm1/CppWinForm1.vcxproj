@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="quotes.txt" />
+    <Text Include="user_added_quotes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

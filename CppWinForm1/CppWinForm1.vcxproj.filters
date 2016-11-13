@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="quotes.txt" />
+    <Text Include="user_added_quotes.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
