@@ -31,13 +31,13 @@ namespace CppWinForm1 {
 			//
 			int NumQuotes = 0;
 			std::string line, theme, author, birth, death, input;
-			std::string lineCollecter;
+			std::string lineCollector;
 
 			std::ifstream userAddedQuotes;
 			userAddedQuotes.open("user_added_quotes.txt");
 			if (userAddedQuotes.is_open())
 			{
-				for (; getline(userAddedQuotes, lineCollecter); NumQuotes++)
+				for (; getline(userAddedQuotes, lineCollector); NumQuotes++)
 				{//counts how many lines there are
 				}
 			}
@@ -50,7 +50,7 @@ namespace CppWinForm1 {
 			if (!quoteList.is_open())
 				exit(EXIT_SUCCESS);
 
-			for (; getline(quoteList, lineCollecter); NumQuotes++)
+			for (; getline(quoteList, lineCollector); NumQuotes++)
 			{//counts how many lines there are
 			}
 
