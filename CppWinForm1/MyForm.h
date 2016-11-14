@@ -7,7 +7,7 @@
 #include "Author.h"
 
 namespace CppWinForm1 {
-	Quotes MyQuotes;
+	Quotes MyAuthorQuotes;
 
 	int searchType = 0; //0 for unselected, 1 for letter search, 2 for binary search
 	using namespace System;
@@ -57,7 +57,7 @@ namespace CppWinForm1 {
 			NumQuotes = NumQuotes / 3;	//because every 3 lines make 1 Quote
 										//_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
 			
-			MyQuotes.resize(NumQuotes);
+			MyAuthorQuotes.resize(NumQuotes);
 
 			quoteList.clear();					//resets eof
 			quoteList.seekg(0, std::ios::beg);	//goes back to first line
@@ -77,7 +77,7 @@ namespace CppWinForm1 {
 				quoteList.ignore();					// to skip the \n character
 				Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 				Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-				MyQuotes.entry(tempQuote, i);
+				MyAuthorQuotes.entry(tempQuote, i);
 			//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 			}
 
@@ -98,14 +98,14 @@ namespace CppWinForm1 {
 					userAddedQuotes.ignore();					// to skip the \n character
 					Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 					Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-					MyQuotes.entry(tempQuote, i);
+					MyAuthorQuotes.entry(tempQuote, i);
 					//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 				}
 			}
 			userAddedQuotes.close();
 			quoteList.close();
 
-			MyQuotes.authorSelectionSort();
+			MyAuthorQuotes.authorSelectionSort();
 
 			//Quotes MyThemeQuotes = MyQuotes; //NOTE: this is a shallow copy. we need a copy function/constructor before we can sort by author
 			//MyQuotes.themeSelectionSort();
@@ -523,22 +523,22 @@ private: System::Void searchAllEvent_Click(System::Object^  sender, System::Even
 		std::string currentSearchResult, endResult = "\n";
 
 		//searching Quote
-		currentSearchResult = MyQuotes.searchQuote(userInput);
+		currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 		
 		//searching Author
-		currentSearchResult = MyQuotes.searchAuthor(userInput);
+		currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
 		//searching Theme
-		currentSearchResult = MyQuotes.searchTheme(userInput);
+		currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
 		//searching Year
-		currentSearchResult = MyQuotes.searchYear(userInput);
+		currentSearchResult = MyAuthorQuotes.searchYear(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
@@ -565,7 +565,7 @@ private: System::Void searchQuoteEvent_Click(System::Object^  sender, System::Ev
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchQuote(userInput);
+		std::string searched = MyAuthorQuotes.searchQuote(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -586,7 +586,7 @@ private: System::Void authorSearchEvent_Click(System::Object^  sender, System::E
 
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchAuthor(userInput);
+		std::string searched = MyAuthorQuotes.searchAuthor(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -594,12 +594,12 @@ private: System::Void authorSearchEvent_Click(System::Object^  sender, System::E
 	}
 	else if (searchType == 2)
 	{
-		int matchingIndex = MyQuotes.authorBinarySearch(userInput);
+		int matchingIndex = MyAuthorQuotes.authorBinarySearch(userInput);
 		if (matchingIndex == -1)
 			displayWindow->Text = "No Results.\nAuthor does not exist.";
 		else
 		{
-			std::string searched = MyQuotes.returnFullQuote(matchingIndex);
+			std::string searched = MyAuthorQuotes.returnFullQuote(matchingIndex);
 			String^ MyString = gcnew String(searched.c_str());
 			displayWindow->Text = MyString;
 		}
@@ -617,7 +617,7 @@ private: System::Void themeSearchEvent_Click(System::Object^  sender, System::Ev
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchTheme(userInput);
+		std::string searched = MyAuthorQuotes.searchTheme(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -651,7 +651,7 @@ private: System::Void yearSearchEvent_Click(System::Object^  sender, System::Eve
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchTheme(userInput);
+		std::string searched = MyAuthorQuotes.searchTheme(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -664,7 +664,7 @@ private: System::Void yearSearchEvent_Click(System::Object^  sender, System::Eve
 }
 
 private: System::Void displayAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-		std::string searched = MyQuotes.displayAll();
+		std::string searched = MyAuthorQuotes.displayAll();
 		String^ MyString = gcnew String(searched.c_str());
 		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t All Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
 }
@@ -704,7 +704,7 @@ private: System::Void addQuoteEvent_Click(System::Object^  sender, System::Event
 	{
 		if (death >= "0" && death <= "9" || death >= "00" && death <= "99" || death >= "000" && death <= "999" || death >= "0000" && death < "2020")
 		{
-			MyQuotes.addQuote(quote, theme, author, birth, death);
+			MyAuthorQuotes.addQuote(quote, theme, author, birth, death);
 			quotePreview->Text = "Quote successfully added!";
 		}
 		else
