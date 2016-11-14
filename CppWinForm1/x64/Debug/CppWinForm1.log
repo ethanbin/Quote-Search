@@ -1,0 +1,9 @@
+﻿  Author imp.cpp
+  MyForm.cpp
+  Quote imp.cpp
+  Quotes imp.cpp
+  Generating Code...
+c:\users\ethan\documents\visual studio 2015\projects\cppwinform1\cppwinform1\quotes imp.cpp(98): warning C4715: 'Quotes::authorBinarySearch': not all control paths return a value
+c:\users\ethan\documents\visual studio 2015\projects\cppwinform1\cppwinform1\quotes imp.cpp(140): warning C4715: 'Quotes::themeBinarySearch': not all control paths return a value
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+LINK : fatal error LNK1561: entry point must be defined
