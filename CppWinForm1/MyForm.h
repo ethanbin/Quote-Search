@@ -54,8 +54,8 @@ namespace CppWinForm1 {
 			{//counts how many lines there are
 			}
 
-			NumQuotes = NumQuotes / 3; //because every 3 lines make 1 Quote
-										 //_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
+			NumQuotes = NumQuotes / 3;	//because every 3 lines make 1 Quote
+										//_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
 			
 			MyQuotes.resize(NumQuotes);
 
@@ -77,7 +77,7 @@ namespace CppWinForm1 {
 				quoteList.ignore();					// to skip the \n character
 				Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 				Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-				MyQuotes.entry(tempQuote, tempAuthor, i);
+				MyQuotes.entry(tempQuote, i);
 			//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 			}
 
@@ -98,7 +98,7 @@ namespace CppWinForm1 {
 					userAddedQuotes.ignore();					// to skip the \n character
 					Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 					Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-					MyQuotes.entry(tempQuote, tempAuthor, i);
+					MyQuotes.entry(tempQuote, i);
 					//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 				}
 			}
