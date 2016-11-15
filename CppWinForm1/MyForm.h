@@ -159,14 +159,22 @@ namespace CppWinForm1 {
 
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  deathAddBar;
+
+
 
 
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
-	private: System::Windows::Forms::TextBox^  birthAddBar;
+
+
 	private: System::Windows::Forms::LinkLabel^  linkLabel1;
 	private: System::Windows::Forms::Label^  label1;
+private: System::Windows::Forms::MaskedTextBox^  birthAddBar;
+private: System::Windows::Forms::Label^  label5;
+private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
+private: System::Windows::Forms::Label^  label6;
+
+
 
 
 
@@ -232,12 +240,14 @@ namespace CppWinForm1 {
 			this->addQuoteEvent = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->deathAddBar = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->birthAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->birthAddBar = (gcnew System::Windows::Forms::TextBox());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->deathAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -263,7 +273,7 @@ namespace CppWinForm1 {
 			// 
 			this->displayWindow->Location = System::Drawing::Point(12, 67);
 			this->displayWindow->Name = L"displayWindow";
-			this->displayWindow->Size = System::Drawing::Size(642, 579);
+			this->displayWindow->Size = System::Drawing::Size(642, 464);
 			this->displayWindow->TabIndex = 5;
 			this->displayWindow->Text = L"";
 			// 
@@ -367,15 +377,15 @@ namespace CppWinForm1 {
 			// 
 			// quotePreview
 			// 
-			this->quotePreview->Location = System::Drawing::Point(3, 214);
+			this->quotePreview->Location = System::Drawing::Point(3, 201);
 			this->quotePreview->Name = L"quotePreview";
-			this->quotePreview->Size = System::Drawing::Size(212, 312);
+			this->quotePreview->Size = System::Drawing::Size(212, 212);
 			this->quotePreview->TabIndex = 23;
 			this->quotePreview->Text = L"\n\n\n\n\n\n               Preview is shown here";
 			// 
 			// previewEvent
 			// 
-			this->previewEvent->Location = System::Drawing::Point(3, 185);
+			this->previewEvent->Location = System::Drawing::Point(3, 172);
 			this->previewEvent->Name = L"previewEvent";
 			this->previewEvent->Size = System::Drawing::Size(212, 23);
 			this->previewEvent->TabIndex = 24;
@@ -385,7 +395,7 @@ namespace CppWinForm1 {
 			// 
 			// addQuoteEvent
 			// 
-			this->addQuoteEvent->Location = System::Drawing::Point(3, 532);
+			this->addQuoteEvent->Location = System::Drawing::Point(3, 419);
 			this->addQuoteEvent->Name = L"addQuoteEvent";
 			this->addQuoteEvent->Size = System::Drawing::Size(212, 23);
 			this->addQuoteEvent->TabIndex = 25;
@@ -396,7 +406,7 @@ namespace CppWinForm1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 169);
+			this->label2->Location = System::Drawing::Point(3, 156);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(212, 13);
 			this->label2->TabIndex = 27;
@@ -411,18 +421,11 @@ namespace CppWinForm1 {
 			this->label3->TabIndex = 28;
 			this->label3->Text = L"If no Author available, enter 0";
 			// 
-			// deathAddBar
-			// 
-			this->deathAddBar->Location = System::Drawing::Point(3, 146);
-			this->deathAddBar->Name = L"deathAddBar";
-			this->deathAddBar->Size = System::Drawing::Size(212, 20);
-			this->deathAddBar->TabIndex = 29;
-			this->deathAddBar->Text = L"Enter Death-Year Here";
-			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(3, 104);
+			this->label4->Location = System::Drawing::Point(42, 104);
+			this->label4->Margin = System::Windows::Forms::Padding(42, 0, 3, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(137, 13);
 			this->label4->TabIndex = 31;
@@ -436,7 +439,9 @@ namespace CppWinForm1 {
 			this->flowLayoutPanel1->Controls->Add(this->label3);
 			this->flowLayoutPanel1->Controls->Add(this->authorAddBar);
 			this->flowLayoutPanel1->Controls->Add(this->label4);
+			this->flowLayoutPanel1->Controls->Add(this->label6);
 			this->flowLayoutPanel1->Controls->Add(this->birthAddBar);
+			this->flowLayoutPanel1->Controls->Add(this->label5);
 			this->flowLayoutPanel1->Controls->Add(this->deathAddBar);
 			this->flowLayoutPanel1->Controls->Add(this->label2);
 			this->flowLayoutPanel1->Controls->Add(this->previewEvent);
@@ -444,9 +449,17 @@ namespace CppWinForm1 {
 			this->flowLayoutPanel1->Controls->Add(this->addQuoteEvent);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(660, 84);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(220, 562);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(220, 447);
 			this->flowLayoutPanel1->TabIndex = 32;
 			this->flowLayoutPanel1->Visible = false;
+			// 
+			// birthAddBar
+			// 
+			this->birthAddBar->Location = System::Drawing::Point(3, 133);
+			this->birthAddBar->Mask = L"0000";
+			this->birthAddBar->Name = L"birthAddBar";
+			this->birthAddBar->Size = System::Drawing::Size(93, 20);
+			this->birthAddBar->TabIndex = 34;
 			// 
 			// label1
 			// 
@@ -456,14 +469,6 @@ namespace CppWinForm1 {
 			this->label1->Size = System::Drawing::Size(177, 13);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ensure Author is properly capitalized";
-			// 
-			// birthAddBar
-			// 
-			this->birthAddBar->Location = System::Drawing::Point(3, 120);
-			this->birthAddBar->Name = L"birthAddBar";
-			this->birthAddBar->Size = System::Drawing::Size(212, 20);
-			this->birthAddBar->TabIndex = 32;
-			this->birthAddBar->Text = L"Enter Birth-Year Here";
 			// 
 			// linkLabel1
 			// 
@@ -480,11 +485,39 @@ namespace CppWinForm1 {
 			this->linkLabel1->Text = L"QUOTE ADDER";
 			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MyForm::linkLabel1_LinkClicked);
 			// 
+			// deathAddBar
+			// 
+			this->deathAddBar->Location = System::Drawing::Point(121, 133);
+			this->deathAddBar->Mask = L"0000";
+			this->deathAddBar->Name = L"deathAddBar";
+			this->deathAddBar->Size = System::Drawing::Size(93, 20);
+			this->deathAddBar->TabIndex = 35;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(102, 135);
+			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->TabIndex = 36;
+			this->label5->Text = L"--";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(25, 117);
+			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(173, 13);
+			this->label6->TabIndex = 37;
+			this->label6->Text = L"Birth Year         ----         Death Year";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(892, 658);
+			this->ClientSize = System::Drawing::Size(892, 543);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->letterOption);
