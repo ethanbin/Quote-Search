@@ -15,6 +15,12 @@ Quotes::Quotes(const Quotes & copyFrom)
 		_Quotes[i] = copyFrom._Quotes[i];
 }
 
+Quotes::~Quotes()
+{
+	_Quotes = '\0';
+	delete[] _Quotes;
+}
+
 void Quotes::resize(int numHowMany)
 {
 	_NumQuotes = numHowMany;

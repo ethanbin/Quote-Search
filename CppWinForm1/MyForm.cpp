@@ -103,5 +103,5 @@ void Main(array<String^>^ args)
 	Application::SetCompatibleTextRenderingDefault(false);
 
 	CppWinForm1::MyForm form(MyAuthorQuotes, MyThemeQuotes);
-	Application::Run(%form);
+	//Application::Run(%form);
 }

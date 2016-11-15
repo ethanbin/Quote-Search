@@ -7,6 +7,8 @@ class Quotes
 public:
 	Quotes();
 	Quotes(const Quotes &);
+	~Quotes();
+
 	void resize(int);
 	void authorSelectionSort();
 	void themeSelectionSort();
