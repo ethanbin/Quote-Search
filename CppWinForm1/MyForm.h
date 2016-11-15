@@ -174,41 +174,8 @@ private: System::Windows::Forms::Label^  label5;
 private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
 private: System::Windows::Forms::Label^  label6;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^  components;
-
-
-
-
-
-
-
+			 
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -242,12 +209,12 @@ private: System::Windows::Forms::Label^  label6;
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			this->birthAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
-			this->deathAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->birthAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->deathAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -453,14 +420,6 @@ private: System::Windows::Forms::Label^  label6;
 			this->flowLayoutPanel1->TabIndex = 32;
 			this->flowLayoutPanel1->Visible = false;
 			// 
-			// birthAddBar
-			// 
-			this->birthAddBar->Location = System::Drawing::Point(3, 133);
-			this->birthAddBar->Mask = L"0000";
-			this->birthAddBar->Name = L"birthAddBar";
-			this->birthAddBar->Size = System::Drawing::Size(93, 20);
-			this->birthAddBar->TabIndex = 34;
-			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -469,6 +428,42 @@ private: System::Windows::Forms::Label^  label6;
 			this->label1->Size = System::Drawing::Size(177, 13);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ensure Author is properly capitalized";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(25, 117);
+			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(173, 13);
+			this->label6->TabIndex = 37;
+			this->label6->Text = L"Birth Year         ----         Death Year";
+			// 
+			// birthAddBar
+			// 
+			this->birthAddBar->Location = System::Drawing::Point(3, 133);
+			this->birthAddBar->Mask = L"0000";
+			this->birthAddBar->Name = L"birthAddBar";
+			this->birthAddBar->Size = System::Drawing::Size(93, 20);
+			this->birthAddBar->TabIndex = 34;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(102, 135);
+			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->TabIndex = 36;
+			this->label5->Text = L"--";
+			// 
+			// deathAddBar
+			// 
+			this->deathAddBar->Location = System::Drawing::Point(121, 133);
+			this->deathAddBar->Mask = L"0000";
+			this->deathAddBar->Name = L"deathAddBar";
+			this->deathAddBar->Size = System::Drawing::Size(93, 20);
+			this->deathAddBar->TabIndex = 35;
 			// 
 			// linkLabel1
 			// 
@@ -484,34 +479,6 @@ private: System::Windows::Forms::Label^  label6;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"QUOTE ADDER";
 			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MyForm::linkLabel1_LinkClicked);
-			// 
-			// deathAddBar
-			// 
-			this->deathAddBar->Location = System::Drawing::Point(121, 133);
-			this->deathAddBar->Mask = L"0000";
-			this->deathAddBar->Name = L"deathAddBar";
-			this->deathAddBar->Size = System::Drawing::Size(93, 20);
-			this->deathAddBar->TabIndex = 35;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(102, 135);
-			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(13, 13);
-			this->label5->TabIndex = 36;
-			this->label5->Text = L"--";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(25, 117);
-			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(173, 13);
-			this->label6->TabIndex = 37;
-			this->label6->Text = L"Birth Year         ----         Death Year";
 			// 
 			// MyForm
 			// 
@@ -731,12 +698,12 @@ private: System::Void addQuoteEvent_Click(System::Object^  sender, System::Event
 
 	// checks for a number
 
-	if (birth > "2020" || death > "2020")
+	if (birth >= "2020" || death >= "2020")
 		quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year do not exceed 2020.";
 
-	else if (birth >= "0" && birth <= "9" || birth >= "00" && birth <= "99" || birth >= "000" && birth <= "999" || birth >= "0000" && birth < "2020")
+	else if (birth.find(" ") == -1)
 	{
-		if (death >= "0" && death <= "9" || death >= "00" && death <= "99" || death >= "000" && death <= "999" || death >= "0000" && death < "2020")
+		if (death.find(" ") == -1)
 		{
 			MyAuthorQuotes.addQuote(quote, theme, author, birth, death);
 			quotePreview->Text = "Quote successfully added!";
