@@ -85,11 +85,7 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 	}
 	userAddedQuotes.close();
 	quoteList.close();
-
 	MyAuthorQuotes.authorSelectionSort();
-
-	//MyThemeQuotes.copy(MyAuthorQuotes);
-	//MyThemeQuotes.themeSelectionSort();
 }
 
 
@@ -100,12 +96,11 @@ void Main(array<String^>^ args)
 	initializeQuotes(MyAuthorQuotes);
 
 	Quotes MyThemeQuotes(MyAuthorQuotes);
+	MyThemeQuotes.themeSelectionSort();
 
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	
-
-	CppWinForm1::MyForm QuoteSearch(MyAuthorQuotes, MyThemeQuotes);
+	CppWinForm1::MyForm QuoteSearch;// (MyAuthorQuotes, MyThemeQuotes);
 	Application::Run(%QuoteSearch);
 }
