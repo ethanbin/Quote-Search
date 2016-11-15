@@ -83,7 +83,10 @@ int Quotes::authorBinarySearch(std::string userInput)
 			return searchMid;
 
 		if (finalStep == true)
+		{
+			_NumPasses = 0;
 			return -1;
+		}
 		else if (userInput > currentAuthor)
 		{
 			searchStart = searchMid;
@@ -125,7 +128,10 @@ int Quotes::themeBinarySearch(std::string userInput)
 			return searchMid;
 
 		if (finalStep == true)
+		{
+			_NumPasses = 0;
 			return -1;
+		}
 		else if (userInput > currentTheme)
 		{
 			searchStart = searchMid;
