@@ -78,7 +78,6 @@ int Quotes::authorBinarySearch(std::string userInput)
 
 		if (currentAuthor == userInput)
 			return searchMid;
-
 		if (finalStep == true)
 		{
 			_NumPasses = 0;
@@ -94,7 +93,6 @@ int Quotes::authorBinarySearch(std::string userInput)
 				finalStep = true;
 			}
 		}
-
 		else if (userInput < currentAuthor)
 		{
 			searchEnd = searchMid;
@@ -139,7 +137,6 @@ int Quotes::themeBinarySearch(std::string userInput)
 				finalStep = true;
 			}
 		}
-
 		else if (userInput < currentTheme)
 		{
 			searchEnd = searchMid;
@@ -177,8 +174,8 @@ std::string Quotes::searchAuthor(std::string userInput)
 	std::string line, upperUserInput=userInput;
 
 	//the follwing code will, for every author, compare the letters of userInput to the letters of the author's name until a match is found
-		//the author will hereby be known as "line"
-		//to keep the code from being littered with notes, the following brief summary is numbered to indicate where each action is executed.
+	//the author will hereby be known as "line"
+	//to keep the code from being littered with notes, the following brief summary is numbered to indicate where each action is executed.
 
 //1)	the first loop will turn userInput into all lowercase, then makes a copy of userInput called upperUserInput in all caps to remove case sensitivity when searching in (3)
 //2)	the main loop will begin by setting i to 0 (so program will begin at the first letter of userInput) and will end when all of userInput has been checked
@@ -214,21 +211,18 @@ std::string Quotes::searchAuthor(std::string userInput)
 				}
 				for (; j < line.length(); j++)
 				{
-					if (userInput[i] == line[j] || upperUserInput[i] == line[j] )//3
+					if (userInput[i] == line[j] || upperUserInput[i] == line[j]) //3
 					{
 						lettersInARow++; //for 4
 						j++; // because the break doesnt let the loop do j++ 
 						break;
 					}
-
-
 					else if (userInput[i] != line[j] && lettersInARow > 0)		//4
 					{
 						i = -1; //i is about to get +1 from the first for loop, so this will counter that
 						lettersInARow = 0;
 						break;
 					}
-
 					else if (j == line.length())								//5
 					{
 						stop = true;
@@ -283,7 +277,6 @@ std::string Quotes::searchTheme(std::string userInput)
 					j++; // because the break doesnt let the loop do j++ 
 					break;
 				}
-
 				else if (userInput[i] != line[j] && lettersInARow > 0)		//4
 				{
 					i = -1; //i is about to get +1 from the first for loop, so this will counter that
@@ -351,7 +344,7 @@ std::string Quotes::searchQuote(std::string userInput)
 					lettersInARow = 0;
 					break;
 				}
-					else if (j == line.length())								//5
+				else if (j == line.length())								//5
 				{
 					stop = true;
 					break;
@@ -401,7 +394,6 @@ std::string Quotes::searchYear(std::string userInput)
 					j++; // because the break doesnt let the loop do j++ 
 					break;
 				}
-
 				else if (userInput[i] != line[j] && lettersInARow > 0)		//4
 				{
 					i = -1; //i is about to get +1 from the first for loop, so this will counter that
@@ -427,23 +419,15 @@ void Quotes::addQuote(std::string quote, std::string theme, std::string author, 
 	Author tempAuthor(author, birth, death);
 	Quote toAdd(quote, theme, tempAuthor);
 
-
 	//create a new user made quote using NEW
 	//this leaves them unsorted. whenever this is called it will require both sorting methods after.
+
 	Quote *temp = _Quotes;
 	_NumQuotes++;
-
 	_Quotes = new Quote[_NumQuotes];
 	for (int i = 0;i < _NumQuotes - 2; i++) //-1 because _NumQuotes is a size not index, another -1 because we dont want to try overwriting last address of _Quotes
 		_Quotes[i] = temp[i];
 	_Quotes[_NumQuotes-1].copy(toAdd);
-
-	/*
-	//create a new user made quote using VECTORS
-	_NumQuotes++;
-	_Quotes.resize(_NumQuotes);
-	_Quotes[_NumQuotes - 1] = toAdd;
-	*/
 
 	//rest hard-saves the user made quote into a text file
 	std::ofstream userAddedQuotes;
@@ -453,10 +437,8 @@ void Quotes::addQuote(std::string quote, std::string theme, std::string author, 
 	userAddedQuotes << theme + "\n";
 	userAddedQuotes << author + " (" + birth + " - " + death + ")";
 	userAddedQuotes.close();
-
 	temp = '\0';
 	delete temp;
-	
 }
 
 Quotes::Quotes()
