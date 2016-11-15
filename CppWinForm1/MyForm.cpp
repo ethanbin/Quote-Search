@@ -80,7 +80,6 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 			Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 			Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
 			MyAuthorQuotes.entry(tempQuote, i);
-			//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 		}
 	}
 	userAddedQuotes.close();
@@ -101,6 +100,6 @@ void Main(array<String^>^ args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	CppWinForm1::MyForm QuoteSearch;// (MyAuthorQuotes, MyThemeQuotes);
+	CppWinForm1::MyForm QuoteSearch(MyAuthorQuotes, MyThemeQuotes);
 	Application::Run(%QuoteSearch);
 }
