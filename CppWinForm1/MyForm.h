@@ -7,7 +7,8 @@
 #include "Author.h"
 
 namespace CppWinForm1 {
-	Quotes MyQuotes;
+	Quotes MyAuthorQuotes;
+	Quotes MyThemeQuotes;
 
 	int searchType = 0; //0 for unselected, 1 for letter search, 2 for binary search
 	using namespace System;
@@ -54,10 +55,10 @@ namespace CppWinForm1 {
 			{//counts how many lines there are
 			}
 
-			NumQuotes = NumQuotes / 3; //because every 3 lines make 1 Quote
-										 //_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
+			NumQuotes = NumQuotes / 3;	//because every 3 lines make 1 Quote
+										//_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
 			
-			MyQuotes.resize(NumQuotes);
+			MyAuthorQuotes.resize(NumQuotes);
 
 			quoteList.clear();					//resets eof
 			quoteList.seekg(0, std::ios::beg);	//goes back to first line
@@ -77,7 +78,7 @@ namespace CppWinForm1 {
 				quoteList.ignore();					// to skip the \n character
 				Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 				Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-				MyQuotes.entry(tempQuote, tempAuthor, i);
+				MyAuthorQuotes.entry(tempQuote, i);
 			//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 			}
 
@@ -98,14 +99,14 @@ namespace CppWinForm1 {
 					userAddedQuotes.ignore();					// to skip the \n character
 					Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 					Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-					MyQuotes.entry(tempQuote, tempAuthor, i);
+					MyAuthorQuotes.entry(tempQuote, i);
 					//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 				}
 			}
 			userAddedQuotes.close();
 			quoteList.close();
 
-			MyQuotes.authorSelectionSort();
+			MyAuthorQuotes.authorSelectionSort();
 
 			//Quotes MyThemeQuotes = MyQuotes; //NOTE: this is a shallow copy. we need a copy function/constructor before we can sort by author
 			//MyQuotes.themeSelectionSort();
@@ -158,48 +159,23 @@ namespace CppWinForm1 {
 
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::TextBox^  deathAddBar;
+
+
 
 
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
-	private: System::Windows::Forms::TextBox^  birthAddBar;
+
+
 	private: System::Windows::Forms::LinkLabel^  linkLabel1;
 	private: System::Windows::Forms::Label^  label1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+private: System::Windows::Forms::MaskedTextBox^  birthAddBar;
+private: System::Windows::Forms::Label^  label5;
+private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
+private: System::Windows::Forms::Label^  label6;
 
 	private: System::ComponentModel::IContainer^  components;
-
-
-
-
-
-
-
+			 
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -231,11 +207,13 @@ namespace CppWinForm1 {
 			this->addQuoteEvent = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->deathAddBar = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->birthAddBar = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->birthAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->deathAddBar = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
@@ -262,7 +240,7 @@ namespace CppWinForm1 {
 			// 
 			this->displayWindow->Location = System::Drawing::Point(12, 67);
 			this->displayWindow->Name = L"displayWindow";
-			this->displayWindow->Size = System::Drawing::Size(642, 579);
+			this->displayWindow->Size = System::Drawing::Size(642, 464);
 			this->displayWindow->TabIndex = 5;
 			this->displayWindow->Text = L"";
 			// 
@@ -366,15 +344,15 @@ namespace CppWinForm1 {
 			// 
 			// quotePreview
 			// 
-			this->quotePreview->Location = System::Drawing::Point(3, 214);
+			this->quotePreview->Location = System::Drawing::Point(3, 201);
 			this->quotePreview->Name = L"quotePreview";
-			this->quotePreview->Size = System::Drawing::Size(212, 312);
+			this->quotePreview->Size = System::Drawing::Size(212, 212);
 			this->quotePreview->TabIndex = 23;
 			this->quotePreview->Text = L"\n\n\n\n\n\n               Preview is shown here";
 			// 
 			// previewEvent
 			// 
-			this->previewEvent->Location = System::Drawing::Point(3, 185);
+			this->previewEvent->Location = System::Drawing::Point(3, 172);
 			this->previewEvent->Name = L"previewEvent";
 			this->previewEvent->Size = System::Drawing::Size(212, 23);
 			this->previewEvent->TabIndex = 24;
@@ -384,7 +362,7 @@ namespace CppWinForm1 {
 			// 
 			// addQuoteEvent
 			// 
-			this->addQuoteEvent->Location = System::Drawing::Point(3, 532);
+			this->addQuoteEvent->Location = System::Drawing::Point(3, 419);
 			this->addQuoteEvent->Name = L"addQuoteEvent";
 			this->addQuoteEvent->Size = System::Drawing::Size(212, 23);
 			this->addQuoteEvent->TabIndex = 25;
@@ -395,7 +373,7 @@ namespace CppWinForm1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 169);
+			this->label2->Location = System::Drawing::Point(3, 156);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(212, 13);
 			this->label2->TabIndex = 27;
@@ -410,18 +388,11 @@ namespace CppWinForm1 {
 			this->label3->TabIndex = 28;
 			this->label3->Text = L"If no Author available, enter 0";
 			// 
-			// deathAddBar
-			// 
-			this->deathAddBar->Location = System::Drawing::Point(3, 146);
-			this->deathAddBar->Name = L"deathAddBar";
-			this->deathAddBar->Size = System::Drawing::Size(212, 20);
-			this->deathAddBar->TabIndex = 29;
-			this->deathAddBar->Text = L"Enter Death-Year Here";
-			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(3, 104);
+			this->label4->Location = System::Drawing::Point(42, 104);
+			this->label4->Margin = System::Windows::Forms::Padding(42, 0, 3, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(137, 13);
 			this->label4->TabIndex = 31;
@@ -435,7 +406,9 @@ namespace CppWinForm1 {
 			this->flowLayoutPanel1->Controls->Add(this->label3);
 			this->flowLayoutPanel1->Controls->Add(this->authorAddBar);
 			this->flowLayoutPanel1->Controls->Add(this->label4);
+			this->flowLayoutPanel1->Controls->Add(this->label6);
 			this->flowLayoutPanel1->Controls->Add(this->birthAddBar);
+			this->flowLayoutPanel1->Controls->Add(this->label5);
 			this->flowLayoutPanel1->Controls->Add(this->deathAddBar);
 			this->flowLayoutPanel1->Controls->Add(this->label2);
 			this->flowLayoutPanel1->Controls->Add(this->previewEvent);
@@ -443,7 +416,7 @@ namespace CppWinForm1 {
 			this->flowLayoutPanel1->Controls->Add(this->addQuoteEvent);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(660, 84);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(220, 562);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(220, 447);
 			this->flowLayoutPanel1->TabIndex = 32;
 			this->flowLayoutPanel1->Visible = false;
 			// 
@@ -456,13 +429,41 @@ namespace CppWinForm1 {
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ensure Author is properly capitalized";
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(25, 117);
+			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(173, 13);
+			this->label6->TabIndex = 37;
+			this->label6->Text = L"Birth Year         ----         Death Year";
+			// 
 			// birthAddBar
 			// 
-			this->birthAddBar->Location = System::Drawing::Point(3, 120);
+			this->birthAddBar->Location = System::Drawing::Point(3, 133);
+			this->birthAddBar->Mask = L"0000";
 			this->birthAddBar->Name = L"birthAddBar";
-			this->birthAddBar->Size = System::Drawing::Size(212, 20);
-			this->birthAddBar->TabIndex = 32;
-			this->birthAddBar->Text = L"Enter Birth-Year Here";
+			this->birthAddBar->Size = System::Drawing::Size(93, 20);
+			this->birthAddBar->TabIndex = 34;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(102, 135);
+			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->TabIndex = 36;
+			this->label5->Text = L"--";
+			// 
+			// deathAddBar
+			// 
+			this->deathAddBar->Location = System::Drawing::Point(121, 133);
+			this->deathAddBar->Mask = L"0000";
+			this->deathAddBar->Name = L"deathAddBar";
+			this->deathAddBar->Size = System::Drawing::Size(93, 20);
+			this->deathAddBar->TabIndex = 35;
 			// 
 			// linkLabel1
 			// 
@@ -483,7 +484,7 @@ namespace CppWinForm1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(892, 658);
+			this->ClientSize = System::Drawing::Size(892, 543);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->letterOption);
@@ -523,22 +524,22 @@ private: System::Void searchAllEvent_Click(System::Object^  sender, System::Even
 		std::string currentSearchResult, endResult = "\n";
 
 		//searching Quote
-		currentSearchResult = MyQuotes.searchQuote(userInput);
+		currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 		
 		//searching Author
-		currentSearchResult = MyQuotes.searchAuthor(userInput);
+		currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
 		//searching Theme
-		currentSearchResult = MyQuotes.searchTheme(userInput);
+		currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
 		//searching Year
-		currentSearchResult = MyQuotes.searchYear(userInput);
+		currentSearchResult = MyAuthorQuotes.searchYear(userInput);
 		if (currentSearchResult != "0")
 			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
@@ -565,7 +566,7 @@ private: System::Void searchQuoteEvent_Click(System::Object^  sender, System::Ev
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchQuote(userInput);
+		std::string searched = MyAuthorQuotes.searchQuote(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -586,7 +587,7 @@ private: System::Void authorSearchEvent_Click(System::Object^  sender, System::E
 
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchAuthor(userInput);
+		std::string searched = MyAuthorQuotes.searchAuthor(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -594,12 +595,12 @@ private: System::Void authorSearchEvent_Click(System::Object^  sender, System::E
 	}
 	else if (searchType == 2)
 	{
-		int matchingIndex = MyQuotes.authorBinarySearch(userInput);
+		int matchingIndex = MyAuthorQuotes.authorBinarySearch(userInput);
 		if (matchingIndex == -1)
 			displayWindow->Text = "No Results.\nAuthor does not exist.";
 		else
 		{
-			std::string searched = MyQuotes.returnFullQuote(matchingIndex);
+			std::string searched = MyAuthorQuotes.returnFullQuote(matchingIndex);
 			String^ MyString = gcnew String(searched.c_str());
 			displayWindow->Text = MyString;
 		}
@@ -617,7 +618,7 @@ private: System::Void themeSearchEvent_Click(System::Object^  sender, System::Ev
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchTheme(userInput);
+		std::string searched = MyAuthorQuotes.searchTheme(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -651,7 +652,7 @@ private: System::Void yearSearchEvent_Click(System::Object^  sender, System::Eve
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyQuotes.searchTheme(userInput);
+		std::string searched = MyAuthorQuotes.searchTheme(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -664,7 +665,7 @@ private: System::Void yearSearchEvent_Click(System::Object^  sender, System::Eve
 }
 
 private: System::Void displayAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-		std::string searched = MyQuotes.displayAll();
+		std::string searched = MyAuthorQuotes.displayAll();
 		String^ MyString = gcnew String(searched.c_str());
 		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t All Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
 }
@@ -697,14 +698,14 @@ private: System::Void addQuoteEvent_Click(System::Object^  sender, System::Event
 
 	// checks for a number
 
-	if (birth > "2020" || death > "2020")
+	if (birth >= "2020" || death >= "2020")
 		quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year do not exceed 2020.";
 
-	else if (birth >= "0" && birth <= "9" || birth >= "00" && birth <= "99" || birth >= "000" && birth <= "999" || birth >= "0000" && birth < "2020")
+	else if (birth.find(" ") == -1)
 	{
-		if (death >= "0" && death <= "9" || death >= "00" && death <= "99" || death >= "000" && death <= "999" || death >= "0000" && death < "2020")
+		if (death.find(" ") == -1)
 		{
-			MyQuotes.addQuote(quote, theme, author, birth, death);
+			MyAuthorQuotes.addQuote(quote, theme, author, birth, death);
 			quotePreview->Text = "Quote successfully added!";
 		}
 		else

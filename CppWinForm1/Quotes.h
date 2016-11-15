@@ -12,7 +12,7 @@ public:
 	
 	void authorSelectionSort();
 	void themeSelectionSort();
-	void entry(Quote, Author, int);
+	void entry(Quote, int);
 	int authorBinarySearch(std::string);
 	int themeBinarySearch(std::string);
 	std::string returnFullQuote(int);

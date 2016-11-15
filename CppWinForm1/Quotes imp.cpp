@@ -49,7 +49,7 @@ void Quotes::themeSelectionSort()
 	}
 }
 
-void Quotes::entry(Quote toAdd, Author toAddAuthor, int i)
+void Quotes::entry(Quote toAdd, int i)
 {
 	_Quotes[i].copy(toAdd);
 }
