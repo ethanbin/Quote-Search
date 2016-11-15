@@ -7,11 +7,8 @@
 #include <shellapi.h>
 #include <stdlib.h>
 
-void Quotes::copy(const Quotes & copyFrom){
-	//this is a member function rather than a traditional copy constructor because
-	//a copy constructor can only be called when first declaring the object, but we need to declare the object outside
-	//a function to make sure the object can be used by any function (such as buttons) and copy it later
-	//on inside a function because that is when the Quotes that will be copied from will be initialized
+Quotes::Quotes(const Quotes & copyFrom)
+{
 	_NumQuotes = copyFrom._NumQuotes;
 	_Quotes = new Quote[_NumQuotes];
 	for (int i = 0; i < _NumQuotes; i++)

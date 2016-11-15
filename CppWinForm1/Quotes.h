@@ -6,10 +6,7 @@ class Quotes
 {
 public:
 	Quotes();
-	void copy(const Quotes &); //this is a member function rather than a traditional copy constructor because
-	//a copy constructor can only be called when first declaring the object, but we need to declare the object outside
-	//a function to make sure the object can be used by any function (such as buttons) and copy it later
-	//on inside a function because that is when the Quotes that will be copied from will be initialized
+	Quotes(const Quotes &);
 
 	void resize(int);
 	
