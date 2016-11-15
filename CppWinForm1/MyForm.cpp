@@ -7,14 +7,14 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-void readinQuotes(Quotes * MyAuthorQuotes)
+void readinQuotes(Quotes * MyAuthorQuotes, std::string arg0, std::string arg1)
 {
 	int NumQuotes = 0;
 	std::string line, theme, author, birth, death, input;
 	std::string lineCollector;
-
+	
 	std::ifstream userAddedQuotes;
-	userAddedQuotes.open("user_added_quotes.txt");
+	userAddedQuotes.open(arg1);
 	if (userAddedQuotes.is_open())
 	{
 		for (; getline(userAddedQuotes, lineCollector); NumQuotes++)
@@ -24,9 +24,8 @@ void readinQuotes(Quotes * MyAuthorQuotes)
 	userAddedQuotes.clear();					//resets eof
 	userAddedQuotes.seekg(0, std::ios::beg);	//goes back to first line
 
-
 	std::ifstream quoteList;
-	quoteList.open("quotes.txt");
+	quoteList.open(arg0);
 	if (!quoteList.is_open())
 		exit(EXIT_SUCCESS);
 
@@ -88,10 +87,14 @@ void readinQuotes(Quotes * MyAuthorQuotes)
 [STAThread]
 void Main(array<String^>^ args)
 {
+	msclr::interop::marshal_context context;
+	std::string arg0 = context.marshal_as<std::string>(args[0]); //quotes.txt
+	std::string arg1 = context.marshal_as<std::string>(args[1]); //user_added_quotes.txt
+
 	Quotes MyAuthorQuotes;
 	Quotes * MyAuthorPointer = &MyAuthorQuotes;
-	
-	readinQuotes(MyAuthorPointer);
+
+	readinQuotes(MyAuthorPointer, arg0, arg1);
 
 	Quotes MyThemeQuotes(MyAuthorQuotes);
 	MyThemeQuotes.themeSelectionSort();
