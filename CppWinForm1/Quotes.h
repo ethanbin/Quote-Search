@@ -6,7 +6,7 @@ class Quotes
 {
 public:
 	Quotes();
-
+	Quotes(const Quotes &);
 
 	void resize(int);
 	

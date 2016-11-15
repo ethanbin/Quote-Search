@@ -7,6 +7,14 @@
 #include <shellapi.h>
 #include <stdlib.h>
 
+Quotes::Quotes(const Quotes & copyFrom)
+{
+	_NumQuotes = copyFrom._NumQuotes;
+	_Quotes = new Quote[_NumQuotes];
+	for (int i = 0; i < _NumQuotes; i++)
+		_Quotes[i] = copyFrom._Quotes[i];
+}
+
 void Quotes::resize(int numHowMany)
 {
 	_NumQuotes = numHowMany;
@@ -72,7 +80,10 @@ int Quotes::authorBinarySearch(std::string userInput)
 			return searchMid;
 
 		if (finalStep == true)
+		{
+			_NumPasses = 0;
 			return -1;
+		}
 		else if (userInput > currentAuthor)
 		{
 			searchStart = searchMid;
@@ -114,7 +125,10 @@ int Quotes::themeBinarySearch(std::string userInput)
 			return searchMid;
 
 		if (finalStep == true)
+		{
+			_NumPasses = 0;
 			return -1;
+		}
 		else if (userInput > currentTheme)
 		{
 			searchStart = searchMid;

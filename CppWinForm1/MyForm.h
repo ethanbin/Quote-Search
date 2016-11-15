@@ -108,9 +108,8 @@ namespace CppWinForm1 {
 
 			MyAuthorQuotes.authorSelectionSort();
 
-			//Quotes MyThemeQuotes = MyQuotes; //NOTE: this is a shallow copy. we need a copy function/constructor before we can sort by author
-			//MyQuotes.themeSelectionSort();
-			//note, themeSearchEvent has binary part commented out. after this is done we need to bring it back.
+			MyThemeQuotes.copy(MyAuthorQuotes);
+			MyThemeQuotes.themeSelectionSort();
 		}
 
 	protected:
@@ -618,7 +617,7 @@ private: System::Void themeSearchEvent_Click(System::Object^  sender, System::Ev
 		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 	else if (searchType == 1)
 	{
-		std::string searched = MyAuthorQuotes.searchTheme(userInput);
+		std::string searched = MyThemeQuotes.searchTheme(userInput);
 
 		String^ MyString = gcnew String(searched.c_str());
 
@@ -626,19 +625,19 @@ private: System::Void themeSearchEvent_Click(System::Object^  sender, System::Ev
 	}
 	else if (searchType == 2)
 	{
-		/*
+		
 		int matchingIndex = MyThemeQuotes.themeBinarySearch(userInput);
 		if (matchingIndex == -1)
 			displayWindow->Text = "No Results.\nTheme does not exist.";
 		else
 		{
-			std::string searched = MyQuotes.returnFullQuote(matchingIndex);
+			std::string searched = MyThemeQuotes.returnFullQuote(matchingIndex);
 			String^ MyString = gcnew String(searched.c_str());
 
 			displayWindow->Text = MyString;
 		}
-		*/
-		displayWindow->Text = "No Quote object in theme-sorted-format exists yet. This feature will be completed and added soon.";
+		
+		//displayWindow->Text = "No Quote object in theme-sorted-format exists yet. This feature will be completed and added soon.";
 	}
 }
 
