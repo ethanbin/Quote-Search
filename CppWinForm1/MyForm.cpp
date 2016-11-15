@@ -7,6 +7,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+<<<<<<< HEAD
 
 void initializeQuotes(Quotes MyAuthorQuotes)
 {
@@ -88,6 +89,8 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 }
 
 
+=======
+>>>>>>> master
 [STAThread]
 void Main(array<String^>^ args)
 {

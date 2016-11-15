@@ -8,7 +8,7 @@ Quote::Quote(std::string quoteLine, std::string theme, Author authorInfo)
 }
 
 void Quote::copy(Quote quoteCopying)
-{//
+{
 	_quote = quoteCopying._quote;
 	_theme = quoteCopying._theme;
 	_authorInfo.copy(quoteCopying._authorInfo);
@@ -36,7 +36,6 @@ std::string Quote::returnYear()
 {
 	std::string year=_authorInfo.year();
 	return year;
-
 }
 
 std::string Quote::returnTheme()
