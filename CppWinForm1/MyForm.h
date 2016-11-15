@@ -31,7 +31,7 @@ namespace CppWinForm1 {
 			//TODO: Add the constructor code here
 			//
 		}
-
+        MyForm(Author, Theme);
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -96,6 +96,8 @@ private: System::Windows::Forms::Label^  label6;
 	private: System::ComponentModel::IContainer^  components;
 			 
 	private:
+        Quote Author;
+        Quote Theme;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
