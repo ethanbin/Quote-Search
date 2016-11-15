@@ -1,13 +1,15 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CppWinForm1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  MyForm.cpp
   Quotes imp.cpp
-Quotes imp.cpp(195): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(218): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(259): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(281): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(320): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(342): warning C4018: '<': signed/unsigned mismatch
-Quotes imp.cpp(399): warning C4018: '<': signed/unsigned mismatch
-c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(112): warning C4715: 'Quotes::authorBinarySearch': not all control paths return a value
-c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(157): warning C4715: 'Quotes::themeBinarySearch': not all control paths return a value
+Quotes imp.cpp(192): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(215): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(256): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(278): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(317): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(339): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(396): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(109): warning C4715: 'Quotes::authorBinarySearch': not all control paths return a value
+c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(154): warning C4715: 'Quotes::themeBinarySearch': not all control paths return a value
   CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.exe
   CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.pdb (Full PDB)
