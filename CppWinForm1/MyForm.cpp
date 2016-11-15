@@ -7,7 +7,7 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-void initializeQuotes(Quotes MyAuthorQuotes)
+void readinQuotes(Quotes * MyAuthorQuotes)
 {
 	int NumQuotes = 0;
 	std::string line, theme, author, birth, death, input;
@@ -36,6 +36,7 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 
 	NumQuotes = NumQuotes / 3;	//because every 3 lines make 1 Quote
 								//_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
+	MyAuthorQuotes->resize(NumQuotes);
 
 	quoteList.clear();					//resets eof
 	quoteList.seekg(0, std::ios::beg);	//goes back to first line
@@ -55,7 +56,7 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 		quoteList.ignore();					// to skip the \n character
 		Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 		Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-		MyAuthorQuotes.entry(tempQuote, i);
+		MyAuthorQuotes->entry(tempQuote, i);
 		//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
 	}
 
@@ -76,19 +77,21 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 			userAddedQuotes.ignore();					// to skip the \n character
 			Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
 			Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
-			MyAuthorQuotes.entry(tempQuote, i);
+			MyAuthorQuotes->entry(tempQuote, i);
 		}
 	}
 	userAddedQuotes.close();
 	quoteList.close();
-	MyAuthorQuotes.authorSelectionSort();
+	MyAuthorQuotes->authorSelectionSort();
 }
 
 [STAThread]
 void Main(array<String^>^ args)
 {
 	Quotes MyAuthorQuotes;
-	initializeQuotes(MyAuthorQuotes);
+	Quotes * MyAuthorPointer = &MyAuthorQuotes;
+	
+	readinQuotes(MyAuthorPointer);
 
 	Quotes MyThemeQuotes(MyAuthorQuotes);
 	MyThemeQuotes.themeSelectionSort();
@@ -96,6 +99,6 @@ void Main(array<String^>^ args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	CppWinForm1::MyForm QuoteSearch(MyAuthorQuotes, MyThemeQuotes);
-	Application::Run(%QuoteSearch);
+	CppWinForm1::MyForm form(MyAuthorQuotes, MyThemeQuotes);
+	Application::Run(%form);
 }

@@ -24,19 +24,16 @@ namespace CppWinForm1 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		MyForm(Quotes Authors, Quotes Themes)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
+			MyAuthorQuotes = Authors;
+			MyThemeQuotes = Themes;
 		}
-        MyForm(Quotes Author, Quotes Theme)
-		{
-			MyAuthorQuotes = Author;
-			MyThemeQuotes = Theme;
-		}
-
+     
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
