@@ -8,6 +8,7 @@
 
 namespace CppWinForm1 {
 	Quotes MyAuthorQuotes;
+	Quotes MyThemeQuotes;
 
 	int searchType = 0; //0 for unselected, 1 for letter search, 2 for binary search
 	using namespace System;
