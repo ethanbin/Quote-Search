@@ -7,8 +7,6 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-<<<<<<< HEAD
-
 void initializeQuotes(Quotes MyAuthorQuotes)
 {
 	int NumQuotes = 0;
@@ -38,8 +36,6 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 
 	NumQuotes = NumQuotes / 3;	//because every 3 lines make 1 Quote
 								//_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
-
-	MyAuthorQuotes.resize(NumQuotes);
 
 	quoteList.clear();					//resets eof
 	quoteList.seekg(0, std::ios::beg);	//goes back to first line
@@ -88,9 +84,6 @@ void initializeQuotes(Quotes MyAuthorQuotes)
 	MyAuthorQuotes.authorSelectionSort();
 }
 
-
-=======
->>>>>>> master
 [STAThread]
 void Main(array<String^>^ args)
 {

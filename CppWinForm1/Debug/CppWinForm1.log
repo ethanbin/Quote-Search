@@ -1,4 +1,16 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CppWinForm1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MyForm.cpp
+  Quote imp.cpp
+  Quotes imp.cpp
+Quotes imp.cpp(189): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(212): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(250): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(272): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(310): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(332): warning C4018: '<': signed/unsigned mismatch
+Quotes imp.cpp(389): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(107): warning C4715: 'Quotes::authorBinarySearch': not all control paths return a value
+c:\users\ethan\documents\github\quote-search\cppwinform1\quotes imp.cpp(151): warning C4715: 'Quotes::themeBinarySearch': not all control paths return a value
   CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.exe
   CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.pdb (Full PDB)
