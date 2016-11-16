@@ -1,4 +1,4 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CppWinForm1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MyForm.cpp
-c:\users\ethan\documents\github\quote-search\cppwinform1\MyForm.h(111): error C2039: 'copy': is not a member of 'Quotes'
-  c:\users\ethan\documents\github\quote-search\cppwinform1\Quotes.h(6): note: see declaration of 'Quotes'
+  CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.exe
+  CppWinForm1.vcxproj -> C:\Users\Ethan\Documents\GitHub\Quote-Search\Debug\Quotes Search GUI.pdb (Full PDB)
