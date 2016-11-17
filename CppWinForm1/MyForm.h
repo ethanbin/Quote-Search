@@ -137,7 +137,7 @@ namespace CppWinForm1 {
 
 
 
-	private: System::Windows::Forms::RichTextBox^  displayWindow;
+
 	private: System::Windows::Forms::Button^  searchQuoteEvent;
 
 
@@ -175,6 +175,7 @@ private: System::Windows::Forms::MaskedTextBox^  birthAddBar;
 private: System::Windows::Forms::Label^  label5;
 private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
 private: System::Windows::Forms::Label^  label6;
+private: System::Windows::Forms::RichTextBox^  displayWindow;
 
 	private: System::ComponentModel::IContainer^  components;
 			 
@@ -225,7 +226,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->searchAllEvent->Location = System::Drawing::Point(12, 38);
 			this->searchAllEvent->Name = L"searchAllEvent";
 			this->searchAllEvent->Size = System::Drawing::Size(102, 23);
-			this->searchAllEvent->TabIndex = 0;
+			this->searchAllEvent->TabIndex = 3;
 			this->searchAllEvent->Text = L"Search All";
 			this->searchAllEvent->UseVisualStyleBackColor = true;
 			this->searchAllEvent->Click += gcnew System::EventHandler(this, &MyForm::searchAllEvent_Click);
@@ -234,17 +235,22 @@ private: System::Windows::Forms::Label^  label6;
 			// 
 			this->inputBar->Location = System::Drawing::Point(12, 12);
 			this->inputBar->Name = L"inputBar";
-			this->inputBar->Size = System::Drawing::Size(642, 20);
-			this->inputBar->TabIndex = 2;
+			this->inputBar->Size = System::Drawing::Size(642, 21);
+			this->inputBar->TabIndex = 0;
 			this->inputBar->Text = L"Enter your search here";
 			this->inputBar->TextChanged += gcnew System::EventHandler(this, &MyForm::inputBar_TextChanged);
 			// 
 			// displayWindow
 			// 
+			this->displayWindow->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->displayWindow->DetectUrls = false;
+			this->displayWindow->Font = (gcnew System::Drawing::Font(L"Century", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->displayWindow->Location = System::Drawing::Point(12, 67);
 			this->displayWindow->Name = L"displayWindow";
 			this->displayWindow->Size = System::Drawing::Size(642, 464);
 			this->displayWindow->TabIndex = 5;
+			this->displayWindow->TabStop = false;
 			this->displayWindow->Text = L"";
 			// 
 			// searchQuoteEvent
@@ -252,7 +258,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->searchQuoteEvent->Location = System::Drawing::Point(120, 38);
 			this->searchQuoteEvent->Name = L"searchQuoteEvent";
 			this->searchQuoteEvent->Size = System::Drawing::Size(102, 23);
-			this->searchQuoteEvent->TabIndex = 11;
+			this->searchQuoteEvent->TabIndex = 4;
 			this->searchQuoteEvent->Text = L"Search Quotes";
 			this->searchQuoteEvent->UseVisualStyleBackColor = true;
 			this->searchQuoteEvent->Click += gcnew System::EventHandler(this, &MyForm::searchQuoteEvent_Click);
@@ -262,7 +268,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->themeSearchEvent->Location = System::Drawing::Point(336, 38);
 			this->themeSearchEvent->Name = L"themeSearchEvent";
 			this->themeSearchEvent->Size = System::Drawing::Size(102, 23);
-			this->themeSearchEvent->TabIndex = 14;
+			this->themeSearchEvent->TabIndex = 6;
 			this->themeSearchEvent->Text = L"Search Themes";
 			this->themeSearchEvent->UseVisualStyleBackColor = true;
 			this->themeSearchEvent->Click += gcnew System::EventHandler(this, &MyForm::themeSearchEvent_Click);
@@ -272,7 +278,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->authorSearchEvent->Location = System::Drawing::Point(228, 38);
 			this->authorSearchEvent->Name = L"authorSearchEvent";
 			this->authorSearchEvent->Size = System::Drawing::Size(102, 23);
-			this->authorSearchEvent->TabIndex = 15;
+			this->authorSearchEvent->TabIndex = 5;
 			this->authorSearchEvent->Text = L"Search Authors";
 			this->authorSearchEvent->UseVisualStyleBackColor = true;
 			this->authorSearchEvent->Click += gcnew System::EventHandler(this, &MyForm::authorSearchEvent_Click);
@@ -282,7 +288,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->yearSearchEvent->Location = System::Drawing::Point(444, 38);
 			this->yearSearchEvent->Name = L"yearSearchEvent";
 			this->yearSearchEvent->Size = System::Drawing::Size(102, 23);
-			this->yearSearchEvent->TabIndex = 16;
+			this->yearSearchEvent->TabIndex = 7;
 			this->yearSearchEvent->Text = L"Search Years";
 			this->yearSearchEvent->UseVisualStyleBackColor = true;
 			this->yearSearchEvent->Click += gcnew System::EventHandler(this, &MyForm::yearSearchEvent_Click);
@@ -292,7 +298,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->displayAllEvent->Location = System::Drawing::Point(552, 38);
 			this->displayAllEvent->Name = L"displayAllEvent";
 			this->displayAllEvent->Size = System::Drawing::Size(102, 23);
-			this->displayAllEvent->TabIndex = 17;
+			this->displayAllEvent->TabIndex = 8;
 			this->displayAllEvent->Text = L"Display All";
 			this->displayAllEvent->UseVisualStyleBackColor = true;
 			this->displayAllEvent->Click += gcnew System::EventHandler(this, &MyForm::displayAllEvent_Click);
@@ -302,8 +308,8 @@ private: System::Windows::Forms::Label^  label6;
 			this->binaryOption->AutoSize = true;
 			this->binaryOption->Location = System::Drawing::Point(660, 12);
 			this->binaryOption->Name = L"binaryOption";
-			this->binaryOption->Size = System::Drawing::Size(178, 17);
-			this->binaryOption->TabIndex = 18;
+			this->binaryOption->Size = System::Drawing::Size(173, 17);
+			this->binaryOption->TabIndex = 1;
 			this->binaryOption->TabStop = true;
 			this->binaryOption->Text = L"Search by Keywords and Letters";
 			this->binaryOption->UseVisualStyleBackColor = true;
@@ -314,9 +320,8 @@ private: System::Windows::Forms::Label^  label6;
 			this->letterOption->AutoSize = true;
 			this->letterOption->Location = System::Drawing::Point(660, 41);
 			this->letterOption->Name = L"letterOption";
-			this->letterOption->Size = System::Drawing::Size(222, 17);
-			this->letterOption->TabIndex = 19;
-			this->letterOption->TabStop = true;
+			this->letterOption->Size = System::Drawing::Size(216, 17);
+			this->letterOption->TabIndex = 2;
 			this->letterOption->Text = L"Binary Search (Authors and Themes Only)";
 			this->letterOption->UseVisualStyleBackColor = true;
 			this->letterOption->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton2_CheckedChanged);
@@ -325,47 +330,47 @@ private: System::Windows::Forms::Label^  label6;
 			// 
 			this->quoteAddBar->Location = System::Drawing::Point(3, 3);
 			this->quoteAddBar->Name = L"quoteAddBar";
-			this->quoteAddBar->Size = System::Drawing::Size(212, 20);
-			this->quoteAddBar->TabIndex = 20;
+			this->quoteAddBar->Size = System::Drawing::Size(212, 21);
+			this->quoteAddBar->TabIndex = 10;
 			this->quoteAddBar->Text = L"Enter Quote Here";
 			// 
 			// authorAddBar
 			// 
-			this->authorAddBar->Location = System::Drawing::Point(3, 81);
+			this->authorAddBar->Location = System::Drawing::Point(3, 83);
 			this->authorAddBar->Name = L"authorAddBar";
-			this->authorAddBar->Size = System::Drawing::Size(212, 20);
-			this->authorAddBar->TabIndex = 21;
+			this->authorAddBar->Size = System::Drawing::Size(212, 21);
+			this->authorAddBar->TabIndex = 12;
 			this->authorAddBar->Text = L"Enter Author Here";
 			// 
 			// themeAddBar
 			// 
-			this->themeAddBar->Location = System::Drawing::Point(3, 29);
+			this->themeAddBar->Location = System::Drawing::Point(3, 30);
 			this->themeAddBar->Name = L"themeAddBar";
-			this->themeAddBar->Size = System::Drawing::Size(212, 20);
-			this->themeAddBar->TabIndex = 22;
+			this->themeAddBar->Size = System::Drawing::Size(212, 21);
+			this->themeAddBar->TabIndex = 11;
 			this->themeAddBar->Text = L"Enter Theme Here";
 			// 
 			// quotePreview
 			// 
-			this->quotePreview->Location = System::Drawing::Point(3, 201);
+			this->quotePreview->Location = System::Drawing::Point(3, 205);
 			this->quotePreview->Name = L"quotePreview";
 			this->quotePreview->Size = System::Drawing::Size(212, 212);
-			this->quotePreview->TabIndex = 23;
-			this->quotePreview->Text = L"\n\n\n\n\n\n               Preview is shown here";
+			this->quotePreview->TabIndex = 16;
+			this->quotePreview->Text = L"\n\n\n\n\n\n                         Preview is shown here";
 			// 
 			// previewEvent
 			// 
-			this->previewEvent->Location = System::Drawing::Point(3, 172);
+			this->previewEvent->Location = System::Drawing::Point(3, 176);
 			this->previewEvent->Name = L"previewEvent";
 			this->previewEvent->Size = System::Drawing::Size(212, 23);
-			this->previewEvent->TabIndex = 24;
+			this->previewEvent->TabIndex = 15;
 			this->previewEvent->Text = L"Preview Quote to Enter";
 			this->previewEvent->UseVisualStyleBackColor = true;
 			this->previewEvent->Click += gcnew System::EventHandler(this, &MyForm::previewEvent_Click);
 			// 
 			// addQuoteEvent
 			// 
-			this->addQuoteEvent->Location = System::Drawing::Point(3, 419);
+			this->addQuoteEvent->Location = System::Drawing::Point(3, 423);
 			this->addQuoteEvent->Name = L"addQuoteEvent";
 			this->addQuoteEvent->Size = System::Drawing::Size(212, 23);
 			this->addQuoteEvent->TabIndex = 25;
@@ -376,16 +381,16 @@ private: System::Windows::Forms::Label^  label6;
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 156);
+			this->label2->Location = System::Drawing::Point(3, 160);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(212, 13);
+			this->label2->Size = System::Drawing::Size(209, 13);
 			this->label2->TabIndex = 27;
 			this->label2->Text = L"Click to Preview and ensure Input is correct";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(3, 65);
+			this->label3->Location = System::Drawing::Point(3, 67);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(146, 13);
 			this->label3->TabIndex = 28;
@@ -394,10 +399,10 @@ private: System::Windows::Forms::Label^  label6;
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(42, 104);
+			this->label4->Location = System::Drawing::Point(42, 107);
 			this->label4->Margin = System::Windows::Forms::Padding(42, 0, 3, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(137, 13);
+			this->label4->Size = System::Drawing::Size(134, 13);
 			this->label4->TabIndex = 31;
 			this->label4->Text = L"If no Year available, enter 0";
 			// 
@@ -426,34 +431,34 @@ private: System::Windows::Forms::Label^  label6;
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(3, 52);
+			this->label1->Location = System::Drawing::Point(3, 54);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(177, 13);
+			this->label1->Size = System::Drawing::Size(179, 13);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ensure Author is properly capitalized";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(25, 117);
+			this->label6->Location = System::Drawing::Point(25, 120);
 			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(173, 13);
+			this->label6->Size = System::Drawing::Size(151, 13);
 			this->label6->TabIndex = 37;
 			this->label6->Text = L"Birth Year         ----         Death Year";
 			// 
 			// birthAddBar
 			// 
-			this->birthAddBar->Location = System::Drawing::Point(3, 133);
+			this->birthAddBar->Location = System::Drawing::Point(3, 136);
 			this->birthAddBar->Mask = L"0000";
 			this->birthAddBar->Name = L"birthAddBar";
-			this->birthAddBar->Size = System::Drawing::Size(93, 20);
-			this->birthAddBar->TabIndex = 34;
+			this->birthAddBar->Size = System::Drawing::Size(93, 21);
+			this->birthAddBar->TabIndex = 13;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(102, 135);
+			this->label5->Location = System::Drawing::Point(102, 138);
 			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(13, 13);
@@ -462,23 +467,23 @@ private: System::Windows::Forms::Label^  label6;
 			// 
 			// deathAddBar
 			// 
-			this->deathAddBar->Location = System::Drawing::Point(121, 133);
+			this->deathAddBar->Location = System::Drawing::Point(121, 136);
 			this->deathAddBar->Mask = L"0000";
 			this->deathAddBar->Name = L"deathAddBar";
-			this->deathAddBar->Size = System::Drawing::Size(93, 20);
-			this->deathAddBar->TabIndex = 35;
+			this->deathAddBar->Size = System::Drawing::Size(93, 21);
+			this->deathAddBar->TabIndex = 14;
 			// 
 			// linkLabel1
 			// 
 			this->linkLabel1->ActiveLinkColor = System::Drawing::SystemColors::ActiveCaption;
 			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Century", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->linkLabel1->LinkColor = System::Drawing::SystemColors::HotTrack;
-			this->linkLabel1->Location = System::Drawing::Point(714, 61);
+			this->linkLabel1->Location = System::Drawing::Point(701, 61);
 			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(124, 19);
-			this->linkLabel1->TabIndex = 33;
+			this->linkLabel1->Size = System::Drawing::Size(144, 20);
+			this->linkLabel1->TabIndex = 9;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"QUOTE ADDER";
 			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MyForm::linkLabel1_LinkClicked);
@@ -500,8 +505,10 @@ private: System::Windows::Forms::Label^  label6;
 			this->Controls->Add(this->displayWindow);
 			this->Controls->Add(this->inputBar);
 			this->Controls->Add(this->searchAllEvent);
+			this->Font = (gcnew System::Drawing::Font(L"Calibri", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Text = L"Quote-Search 3";
 			this->flowLayoutPanel1->ResumeLayout(false);
 			this->flowLayoutPanel1->PerformLayout();
 			this->ResumeLayout(false);
