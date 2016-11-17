@@ -15,9 +15,17 @@ Quotes::Quotes(const Quotes & copyFrom)
 		_Quotes[i] = copyFrom._Quotes[i];
 }
 
+void Quotes::operator = (const Quotes & copyFrom)
+{
+	_NumQuotes = copyFrom._NumQuotes;
+	_Quotes = new Quote[_NumQuotes];
+	for (int i = 0; i < _NumQuotes; i++)
+		_Quotes[i] = copyFrom._Quotes[i];
+}
+
 Quotes::~Quotes()
 {
-	_Quotes = '\0';
+	//_Quotes = '\0';
 	delete[] _Quotes;
 }
 
@@ -420,7 +428,7 @@ std::string Quotes::searchYear(std::string userInput)
 		return searchResults+"\n";
 }
 
-void Quotes::addQuote(std::string quote, std::string theme, std::string author, std::string birth, std::string death)
+void Quotes::addQuote(std::string quote, std::string theme, std::string author, std::string birth, std::string death, std::string argv1)
 {
 	Author tempAuthor(author, birth, death);
 	Quote toAdd(quote, theme, tempAuthor);
@@ -437,7 +445,7 @@ void Quotes::addQuote(std::string quote, std::string theme, std::string author, 
 
 	//rest hard-saves the user made quote into a text file
 	std::ofstream userAddedQuotes;
-	userAddedQuotes.open("user_added_quotes.txt", std::ios::out | std::ios::app);
+	userAddedQuotes.open(argv1, std::ios::out | std::ios::app);
 	userAddedQuotes << "\n" + quote + "\n";
 	theme[0] = tolower(theme[0]);
 	userAddedQuotes << theme + "\n";

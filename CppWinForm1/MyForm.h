@@ -9,6 +9,7 @@
 namespace CppWinForm1 {
 	Quotes MyAuthorQuotes;
 	Quotes MyThemeQuotes;
+	std::string argv1;
 
 	int searchType = 0; //0 for unselected, 1 for letter search, 2 for binary search
 	using namespace System;
@@ -24,14 +25,94 @@ namespace CppWinForm1 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(Quotes Authors, Quotes Themes)
+		MyForm(std::string arg0, std::string arg1)// arg 0 = quotes.txt, arg1 = user_added_quotes.txt
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
-			MyAuthorQuotes = Authors;
-			MyThemeQuotes = Themes;
+			argv1 = arg1; //so we can use this when adding a new Quote.
+
+			int NumQuotes = 0;
+			std::string line, theme, author, birth, death, input;
+			std::string lineCollecter;
+
+			std::ifstream userAddedQuotes;
+			userAddedQuotes.open(arg1);
+			if (userAddedQuotes.is_open())
+			{
+				for (; getline(userAddedQuotes, lineCollecter); NumQuotes++)
+				{//counts how many lines there are
+				}
+			}
+			userAddedQuotes.clear();					//resets eof
+			userAddedQuotes.seekg(0, std::ios::beg);	//goes back to first line
+
+
+			std::ifstream quoteList;
+			quoteList.open(arg0);
+			if (!quoteList.is_open())
+				exit(EXIT_SUCCESS);
+
+			for (; getline(quoteList, lineCollecter); NumQuotes++)
+			{//counts how many lines there are
+			}
+
+			NumQuotes = NumQuotes / 3; //because every 3 lines make 1 Quote
+									   //_Quotes.resize(_NumQuotes);	//changes vector size to have _numQuotes many addresses while keeping values
+
+			MyAuthorQuotes.resize(NumQuotes);
+
+			quoteList.clear();					//resets eof
+			quoteList.seekg(0, std::ios::beg);	//goes back to first line
+
+			int i = 0;
+			for (; !quoteList.eof(); i++)
+			{
+				getline(quoteList, line);			//read in the quote
+				getline(quoteList, theme);			//read in the theme
+				getline(quoteList, author, '(');	//read in the author up to the opening parantheses for the year
+				author[author.length() - 1] = ',';	//replaces space after author's name with a comma
+				author[0] = toupper(author[0]);		//will always make first letter uppercase - this is to make unknown into Unknown for sorting
+				getline(quoteList, birth, ' ');		//read in the birth year up to the immediately following space
+				quoteList.ignore();					//to skip the '-'
+				quoteList.ignore();					//to skip the space after '-'
+				getline(quoteList, death, ')');		//read in death year up to the closing parantheses
+				quoteList.ignore();					// to skip the \n character
+				Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
+				Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
+				MyAuthorQuotes.entry(tempQuote, i);
+				//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
+			}
+
+			if (userAddedQuotes.is_open())
+			{
+				userAddedQuotes.ignore(); // firstline is \n, this stops that from being an issue
+				for (; !userAddedQuotes.eof(); i++) //reads in user-added quotes
+				{
+					getline(userAddedQuotes, line);			//read in the quote
+					getline(userAddedQuotes, theme);			//read in the theme
+					getline(userAddedQuotes, author, '(');	//read in the author up to the opening parantheses for the year
+					author[author.length() - 1] = ',';	//replaces space after author's name with a comma
+					author[0] = toupper(author[0]);		//will always make first letter uppercase - this is to make unknown into Unknown for sorting
+					getline(userAddedQuotes, birth, ' ');		//read in the birth year up to the immediately following space
+					userAddedQuotes.ignore();					//to skip the '-'
+					userAddedQuotes.ignore();					//to skip the space after '-'
+					getline(userAddedQuotes, death, ')');		//read in death year up to the closing parantheses
+					userAddedQuotes.ignore();					// to skip the \n character
+					Author tempAuthor(author, birth, death);	//creates a variable author with appropriate information to be used for copying
+					Quote tempQuote(line, theme, tempAuthor);	//initialize a new instance of Quote with the info we need, then....
+					MyAuthorQuotes.entry(tempQuote, i);
+					//_Quotes[i].copy(tempQuote, tempAuthor);	//copy it over to _Quotes[i] and now it has the proper values
+				}
+			}
+			userAddedQuotes.close();
+			quoteList.close();
+
+			MyAuthorQuotes.authorSelectionSort();
+
+			MyThemeQuotes = MyAuthorQuotes;
+			MyThemeQuotes.themeSelectionSort();
 		}
      
 	protected:
@@ -156,6 +237,7 @@ private: System::Windows::Forms::Label^  label6;
 			this->inputBar->Size = System::Drawing::Size(642, 20);
 			this->inputBar->TabIndex = 2;
 			this->inputBar->Text = L"Enter your search here";
+			this->inputBar->TextChanged += gcnew System::EventHandler(this, &MyForm::inputBar_TextChanged);
 			// 
 			// displayWindow
 			// 
@@ -626,7 +708,7 @@ private: System::Void addQuoteEvent_Click(System::Object^  sender, System::Event
 	{
 		if (death.find(" ") == -1)
 		{
-			MyAuthorQuotes.addQuote(quote, theme, author, birth, death);
+			MyAuthorQuotes.addQuote(quote, theme, author, birth, death, argv1);
 			quotePreview->Text = "Quote successfully added!";
 		}
 		else
@@ -635,13 +717,55 @@ private: System::Void addQuoteEvent_Click(System::Object^  sender, System::Event
 	else
 		quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year are correct.";
 }
+	
 		 //shows and hides the Quote-Adder
-
 private: System::Void linkLabel1_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e) {
 	if(flowLayoutPanel1->Visible == false)
 	flowLayoutPanel1->Visible = true;
 	else if (flowLayoutPanel1->Visible == true)
 		flowLayoutPanel1->Visible = false;
+}
+
+		//real-time search-all
+private: System::Void inputBar_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	String^ userInputSystemString;
+	userInputSystemString = inputBar->Text;
+	msclr::interop::marshal_context context;
+	std::string userInput = context.marshal_as<std::string>(userInputSystemString); //convert System String to std string to use with existing code
+
+		std::string squiggle = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+		std::string quoteIntro = "\tSearch Results Relating to Quotes\n";
+		std::string authorIntro = "\tSearch Results Relating to Authors\n";
+		std::string themeIntro = "\tSearch Results Relating to Themes\n";
+		std::string yearIntro = "\tSearch Results Relating to Years\n";
+		std::string currentSearchResult, endResult = "\n";
+
+		//searching Quote
+		currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
+		if (currentSearchResult != "0")
+			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+
+		//searching Author
+		currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
+		if (currentSearchResult != "0")
+			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+
+		//searching Theme
+		currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
+		if (currentSearchResult != "0")
+			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+
+		//searching Year
+		currentSearchResult = MyAuthorQuotes.searchYear(userInput);
+		if (currentSearchResult != "0")
+			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+
+		if (endResult == "\n")
+			endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
+
+		String^ MyString = gcnew String(endResult.c_str()); //convert std string to System String to output in displayWindow
+		displayWindow->Text = MyString;
+	
 }
 };
 }

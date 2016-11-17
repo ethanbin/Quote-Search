@@ -91,17 +91,9 @@ void Main(array<String^>^ args)
 	std::string arg0 = context.marshal_as<std::string>(args[0]); //quotes.txt
 	std::string arg1 = context.marshal_as<std::string>(args[1]); //user_added_quotes.txt
 
-	Quotes MyAuthorQuotes;
-	Quotes * MyAuthorPointer = &MyAuthorQuotes;
-
-	readinQuotes(MyAuthorPointer, arg0, arg1);
-
-	Quotes MyThemeQuotes(MyAuthorQuotes);
-	MyThemeQuotes.themeSelectionSort();
-
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	CppWinForm1::MyForm form(MyAuthorQuotes, MyThemeQuotes);
-	//Application::Run(%form);
+	CppWinForm1::MyForm form(arg0, arg1);
+	Application::Run(%form);
 }

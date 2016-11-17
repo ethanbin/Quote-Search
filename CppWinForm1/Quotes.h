@@ -7,6 +7,7 @@ class Quotes
 public:
 	Quotes();
 	Quotes(const Quotes &);
+	void operator = (const Quotes &);
 	~Quotes();
 
 	void resize(int);
@@ -21,7 +22,7 @@ public:
 	std::string searchQuote(std::string);
 	std::string searchTheme(std::string);
 	std::string searchYear(std::string);
-	void addQuote(std::string, std::string, std::string, std::string, std::string);
+	void addQuote(std::string, std::string, std::string, std::string, std::string, std::string);
 
 private:
 	int _NumQuotes;
