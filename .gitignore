@@ -49,6 +49,15 @@ project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
 
+#ADDED BY ETHAN - START
+*.suo
+*.log
+*.tlog
+*.Cache
+*.pdb
+*.db
+#ADDED BY ETHAN - END
+
 *_i.c
 *_p.c
 *_i.h
