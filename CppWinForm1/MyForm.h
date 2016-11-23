@@ -545,17 +545,17 @@ namespace CppWinForm1 {
 				//searching Author
 				currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
 				if (currentSearchResult != "0")
-					endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+					endResult = endResult + squiggle + authorIntro + squiggle + currentSearchResult;
 
 				//searching Theme
 				currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
 				if (currentSearchResult != "0")
-					endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+					endResult = endResult + squiggle + themeIntro + squiggle + currentSearchResult;
 
 				//searching Year
 				currentSearchResult = MyAuthorQuotes.searchYear(userInput);
 				if (currentSearchResult != "0")
-					endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+					endResult = endResult + squiggle + yearIntro + squiggle + currentSearchResult;
 
 				if (endResult == "\n")
 					endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
@@ -585,7 +585,10 @@ namespace CppWinForm1 {
 
 			String^ MyString = gcnew String(searched.c_str());
 
-			displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
 		}
 		else if (searchType == 2)
 			displayWindow->Text = "Binary Display can only be used for Themes and Authors. Please change Search-Type to Search All.";
@@ -606,7 +609,10 @@ namespace CppWinForm1 {
 
 			String^ MyString = gcnew String(searched.c_str());
 
-			displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Authors\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Authors\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
 		}
 		else if (searchType == 2)
 		{
@@ -637,7 +643,10 @@ namespace CppWinForm1 {
 
 			String^ MyString = gcnew String(searched.c_str());
 
-			displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Themes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Themes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
 		}
 		else if (searchType == 2)
 		{
@@ -671,7 +680,10 @@ namespace CppWinForm1 {
 
 			String^ MyString = gcnew String(searched.c_str());
 
-			displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Years\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Years\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
 		}
 		else if (searchType == 2)
 		{
