@@ -764,17 +764,17 @@ namespace CppWinForm1 {
 			//searching Author
 			currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
 			if (currentSearchResult != "0")
-				endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+				endResult = endResult + squiggle + authorIntro + squiggle + currentSearchResult;
 
 			//searching Theme
 			currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
 			if (currentSearchResult != "0")
-				endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+				endResult = endResult + squiggle + themeIntro + squiggle + currentSearchResult;
 
 			//searching Year
 			currentSearchResult = MyAuthorQuotes.searchYear(userInput);
 			if (currentSearchResult != "0")
-				endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+				endResult = endResult + squiggle + yearIntro + squiggle + currentSearchResult;
 
 			if (endResult == "\n")
 				endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
