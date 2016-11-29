@@ -18,7 +18,7 @@ namespace CppWinForm1 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	
+
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
@@ -114,7 +114,7 @@ namespace CppWinForm1 {
 			MyThemeQuotes = MyAuthorQuotes;
 			MyThemeQuotes.themeSelectionSort();
 		}
-     
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -171,14 +171,14 @@ namespace CppWinForm1 {
 
 	private: System::Windows::Forms::LinkLabel^  linkLabel1;
 	private: System::Windows::Forms::Label^  label1;
-private: System::Windows::Forms::MaskedTextBox^  birthAddBar;
-private: System::Windows::Forms::Label^  label5;
-private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
-private: System::Windows::Forms::Label^  label6;
-private: System::Windows::Forms::RichTextBox^  displayWindow;
+	private: System::Windows::Forms::MaskedTextBox^  birthAddBar;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::MaskedTextBox^  deathAddBar;
+	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::RichTextBox^  displayWindow;
 
 	private: System::ComponentModel::IContainer^  components;
-			 
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -516,263 +516,285 @@ private: System::Windows::Forms::RichTextBox^  displayWindow;
 
 		}
 #pragma endregion
-private: System::Void searchAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString); //convert System String to std string to use with existing code
-	
-	if (searchType == 0)
-		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
-	else if (searchType == 1)
-	{
-		std::string squiggle = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-		std::string quoteIntro = "\tSearch Results Relating to Quotes\n";
-		std::string authorIntro = "\tSearch Results Relating to Authors\n";
-		std::string themeIntro = "\tSearch Results Relating to Themes\n";
-		std::string yearIntro = "\tSearch Results Relating to Years\n";
-		std::string currentSearchResult, endResult = "\n";
+	private: System::Void searchAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString); //convert System String to std string to use with existing code
 
-		//searching Quote
-		currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
-		
-		//searching Author
-		currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
-
-		//searching Theme
-		currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
-
-		//searching Year
-		currentSearchResult = MyAuthorQuotes.searchYear(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
-
-		if (endResult == "\n")
-			endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
-
-		String^ MyString = gcnew String(endResult.c_str()); //convert std string to System String to output in displayWindow
-		displayWindow->Text = MyString;
-	}
-	else if (searchType == 2)
-	{
-		displayWindow->Text = "Binary Display can only be used for Themes and Authors. Please change Search-Type to Search All.";
-	}
-}
-
-private: System::Void searchQuoteEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString);
-	
-	if (searchType == 0)
-		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
-	else if (searchType == 1)
-	{
-		std::string searched = MyAuthorQuotes.searchQuote(userInput);
-
-		String^ MyString = gcnew String(searched.c_str());
-
-		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
-	}
-	else if (searchType == 2)
-		displayWindow->Text = "Binary Display can only be used for Themes and Authors. Please change Search-Type to Search All.";
-}
-
-private: System::Void authorSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString);
-
-	if (searchType == 0)
-		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
-
-	else if (searchType == 1)
-	{
-		std::string searched = MyAuthorQuotes.searchAuthor(userInput);
-
-		String^ MyString = gcnew String(searched.c_str());
-
-		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Authors\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
-	}
-	else if (searchType == 2)
-	{
-		int matchingIndex = MyAuthorQuotes.authorBinarySearch(userInput);
-		if (matchingIndex == -1)
-			displayWindow->Text = "No Results.\nAuthor does not exist.";
-		else
+		if (searchType == 0)
+			displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
+		else if (searchType == 1)
 		{
-			std::string searched = MyAuthorQuotes.returnFullQuote(matchingIndex);
-			String^ MyString = gcnew String(searched.c_str());
-			displayWindow->Text = MyString;
+			if (userInput == "" || userInput == " ") {
+				displayWindow->Text = "Awaiting Input...";
+			}
+			else {
+				std::string squiggle = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+				std::string quoteIntro = "\tSearch Results Relating to Quotes\n";
+				std::string authorIntro = "\tSearch Results Relating to Authors\n";
+				std::string themeIntro = "\tSearch Results Relating to Themes\n";
+				std::string yearIntro = "\tSearch Results Relating to Years\n";
+				std::string currentSearchResult, endResult = "\n";
+
+				//searching Quote
+				currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
+				if (currentSearchResult != "0")
+					endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+
+				//searching Author
+				currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
+				if (currentSearchResult != "0")
+					endResult = endResult + squiggle + authorIntro + squiggle + currentSearchResult;
+
+				//searching Theme
+				currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
+				if (currentSearchResult != "0")
+					endResult = endResult + squiggle + themeIntro + squiggle + currentSearchResult;
+
+				//searching Year
+				currentSearchResult = MyAuthorQuotes.searchYear(userInput);
+				if (currentSearchResult != "0")
+					endResult = endResult + squiggle + yearIntro + squiggle + currentSearchResult;
+
+				if (endResult == "\n")
+					endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
+
+				String^ MyString = gcnew String(endResult.c_str()); //convert std string to System String to output in displayWindow
+				displayWindow->Text = MyString;
+			}
+		}
+		else if (searchType == 2)
+		{
+			displayWindow->Text = "Binary Display can only be used for Themes and Authors. Please change Search-Type to Search All.";
 		}
 	}
-}
 
-private: System::Void themeSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString);
+	private: System::Void searchQuoteEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
 
-	if (searchType == 0)
-		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
-	else if (searchType == 1)
-	{
-		std::string searched = MyThemeQuotes.searchTheme(userInput);
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString);
 
-		String^ MyString = gcnew String(searched.c_str());
-
-		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Themes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
-	}
-	else if (searchType == 2)
-	{
-		
-		int matchingIndex = MyThemeQuotes.themeBinarySearch(userInput);
-		if (matchingIndex == -1)
-			displayWindow->Text = "No Results.\nTheme does not exist.";
-		else
+		if (searchType == 0)
+			displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
+		else if (searchType == 1)
 		{
-			std::string searched = MyThemeQuotes.returnFullQuote(matchingIndex);
+			std::string searched = MyAuthorQuotes.searchQuote(userInput);
+
 			String^ MyString = gcnew String(searched.c_str());
 
-			displayWindow->Text = MyString;
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
 		}
-		
-		//displayWindow->Text = "No Quote object in theme-sorted-format exists yet. This feature will be completed and added soon.";
+		else if (searchType == 2)
+			displayWindow->Text = "Binary Display can only be used for Themes and Authors. Please change Search-Type to Search All.";
 	}
-}
 
-private: System::Void yearSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString);
-	
-	if (searchType == 0)
-		displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
-	else if (searchType == 1)
-	{
-		std::string searched = MyAuthorQuotes.searchTheme(userInput);
+	private: System::Void authorSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString);
 
-		String^ MyString = gcnew String(searched.c_str());
+		if (searchType == 0)
+			displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
 
-		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Years\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+		else if (searchType == 1)
+		{
+			std::string searched = MyAuthorQuotes.searchAuthor(userInput);
+
+			String^ MyString = gcnew String(searched.c_str());
+
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Authors\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
+		}
+		else if (searchType == 2)
+		{
+			int matchingIndex = MyAuthorQuotes.authorBinarySearch(userInput);
+			if (matchingIndex == -1)
+				displayWindow->Text = "No Results.\nAuthor does not exist.";
+			else
+			{
+				std::string searched = MyAuthorQuotes.returnFullQuote(matchingIndex);
+				String^ MyString = gcnew String(searched.c_str());
+				displayWindow->Text = MyString;
+			}
+		}
 	}
-	else if (searchType == 2)
-	{
-		displayWindow->Text = "Due to multiple Quotes sharing like years, a Binary Search is ineffective. Please use a Keyword/Letter Search instead.";
-	}
-}
 
-private: System::Void displayAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void themeSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString);
+
+		if (searchType == 0)
+			displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
+		else if (searchType == 1)
+		{
+			std::string searched = MyThemeQuotes.searchTheme(userInput);
+
+			String^ MyString = gcnew String(searched.c_str());
+
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Themes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
+		}
+		else if (searchType == 2)
+		{
+
+			int matchingIndex = MyThemeQuotes.themeBinarySearch(userInput);
+			if (matchingIndex == -1)
+				displayWindow->Text = "No Results.\nTheme does not exist.";
+			else
+			{
+				std::string searched = MyThemeQuotes.returnFullQuote(matchingIndex);
+				String^ MyString = gcnew String(searched.c_str());
+
+				displayWindow->Text = MyString;
+			}
+
+			//displayWindow->Text = "No Quote object in theme-sorted-format exists yet. This feature will be completed and added soon.";
+		}
+	}
+
+	private: System::Void yearSearchEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString);
+
+		if (searchType == 0)
+			displayWindow->Text = "Please select your desired method of search with the readio buttons to begin your search.";
+		else if (searchType == 1)
+		{
+			std::string searched = MyAuthorQuotes.searchTheme(userInput);
+
+			String^ MyString = gcnew String(searched.c_str());
+
+			if (MyString != "0")
+				displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\tSearch Results Relating to Years\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
+			else
+				displayWindow->Text = "No Results Found.";
+		}
+		else if (searchType == 2)
+		{
+			displayWindow->Text = "Due to multiple Quotes sharing like years, a Binary Search is ineffective. Please use a Keyword/Letter Search instead.";
+		}
+	}
+
+	private: System::Void displayAllEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		std::string searched = MyAuthorQuotes.displayAll();
 		String^ MyString = gcnew String(searched.c_str());
 		displayWindow->Text = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t All Quotes\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + MyString;
-}
-private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	searchType = 1;
-}
-private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	searchType = 2;
-}
+	}
+	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		searchType = 1;
+	}
+	private: System::Void radioButton2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		searchType = 2;
+	}
 
-		 //QUOTE ADDER FUNCTIONS
-private: System::Void previewEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ preview = quoteAddBar->Text + "\n" + themeAddBar->Text + "\n" + authorAddBar->Text 
-		+ " ("  + birthAddBar->Text + " - " + deathAddBar->Text + ")";
-	quotePreview->Text = preview;
-}
-private: System::Void addQuoteEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ systemQuote = quoteAddBar->Text;
-	String^ systemTheme = themeAddBar->Text;
-	String^ systemAuthor = authorAddBar->Text;
-	String^ systemBirth = birthAddBar->Text;
-	String^ systemDeath = deathAddBar->Text;
+			 //QUOTE ADDER FUNCTIONS
+	private: System::Void previewEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ preview = quoteAddBar->Text + "\n" + themeAddBar->Text + "\n" + authorAddBar->Text
+			+ " (" + birthAddBar->Text + " - " + deathAddBar->Text + ")";
+		quotePreview->Text = preview;
+	}
+	private: System::Void addQuoteEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		String^ systemQuote = quoteAddBar->Text;
+		String^ systemTheme = themeAddBar->Text;
+		String^ systemAuthor = authorAddBar->Text;
+		String^ systemBirth = birthAddBar->Text;
+		String^ systemDeath = deathAddBar->Text;
 
-	msclr::interop::marshal_context context;
-	std::string quote = context.marshal_as<std::string>(systemQuote);
-	std::string theme = context.marshal_as<std::string>(systemTheme);
-	std::string author = context.marshal_as<std::string>(systemAuthor);
-	std::string birth = context.marshal_as<std::string>(systemBirth);
-	std::string death = context.marshal_as<std::string>(systemDeath);
+		msclr::interop::marshal_context context;
+		std::string quote = context.marshal_as<std::string>(systemQuote);
+		std::string theme = context.marshal_as<std::string>(systemTheme);
+		std::string author = context.marshal_as<std::string>(systemAuthor);
+		std::string birth = context.marshal_as<std::string>(systemBirth);
+		std::string death = context.marshal_as<std::string>(systemDeath);
 
-	// checks for a number
+		// checks for a number
 
-	if (birth >= "2020" || death >= "2020")
-		quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year do not exceed 2020.";
+		if (birth >= "2020" || death >= "2020")
+			quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year do not exceed 2020.";
 
-	else if (birth.find(" ") == -1)
-	{
-		if (death.find(" ") == -1)
+		else if (birth.find(" ") == -1)
 		{
-			MyAuthorQuotes.addQuote(quote, theme, author, birth, death, argv1);
-			quotePreview->Text = "Quote successfully added!";
+			if (death.find(" ") == -1)
+			{
+				MyAuthorQuotes.addQuote(quote, theme, author, birth, death, argv1);
+				quotePreview->Text = "Quote successfully added!";
+			}
+			else
+				quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year are correct.";
 		}
 		else
 			quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year are correct.";
 	}
-	else
-		quotePreview->Text = "Quote-Add Failed! Make sure Birth-Year and Death-Year are correct.";
-}
-	
-		 //shows and hides the Quote-Adder
-private: System::Void linkLabel1_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e) {
-	if(flowLayoutPanel1->Visible == false)
-	flowLayoutPanel1->Visible = true;
-	else if (flowLayoutPanel1->Visible == true)
-		flowLayoutPanel1->Visible = false;
-}
 
-		//real-time search-all
-private: System::Void inputBar_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-	String^ userInputSystemString;
-	userInputSystemString = inputBar->Text;
-	msclr::interop::marshal_context context;
-	std::string userInput = context.marshal_as<std::string>(userInputSystemString); //convert System String to std string to use with existing code
+			 //shows and hides the Quote-Adder
+	private: System::Void linkLabel1_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e) {
+		if (flowLayoutPanel1->Visible == false)
+			flowLayoutPanel1->Visible = true;
+		else if (flowLayoutPanel1->Visible == true)
+			flowLayoutPanel1->Visible = false;
+	}
 
-		std::string squiggle = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-		std::string quoteIntro = "\tSearch Results Relating to Quotes\n";
-		std::string authorIntro = "\tSearch Results Relating to Authors\n";
-		std::string themeIntro = "\tSearch Results Relating to Themes\n";
-		std::string yearIntro = "\tSearch Results Relating to Years\n";
-		std::string currentSearchResult, endResult = "\n";
+			 //real-time search-all
+	private: System::Void inputBar_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		String^ userInputSystemString;
+		userInputSystemString = inputBar->Text;
+		msclr::interop::marshal_context context;
+		std::string userInput = context.marshal_as<std::string>(userInputSystemString); //convert System String to std string to use with existing code
 
-		//searching Quote
-		currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+		if (userInput == "" || userInput == " ") {
+			displayWindow->Text = "Awaiting Input...";
+		}
+		else {
+			std::string squiggle = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+			std::string quoteIntro = "\tSearch Results Relating to Quotes\n";
+			std::string authorIntro = "\tSearch Results Relating to Authors\n";
+			std::string themeIntro = "\tSearch Results Relating to Themes\n";
+			std::string yearIntro = "\tSearch Results Relating to Years\n";
+			std::string currentSearchResult, endResult = "\n";
 
-		//searching Author
-		currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+			//searching Quote
+			currentSearchResult = MyAuthorQuotes.searchQuote(userInput);
+			if (currentSearchResult != "0")
+				endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
 
-		//searching Theme
-		currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+			//searching Author
+			currentSearchResult = MyAuthorQuotes.searchAuthor(userInput);
+			if (currentSearchResult != "0")
+				endResult = endResult + squiggle + authorIntro + squiggle + currentSearchResult;
 
-		//searching Year
-		currentSearchResult = MyAuthorQuotes.searchYear(userInput);
-		if (currentSearchResult != "0")
-			endResult = endResult + squiggle + quoteIntro + squiggle + currentSearchResult;
+			//searching Theme
+			currentSearchResult = MyAuthorQuotes.searchTheme(userInput);
+			if (currentSearchResult != "0")
+				endResult = endResult + squiggle + themeIntro + squiggle + currentSearchResult;
 
-		if (endResult == "\n")
-			endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
+			//searching Year
+			currentSearchResult = MyAuthorQuotes.searchYear(userInput);
+			if (currentSearchResult != "0")
+				endResult = endResult + squiggle + yearIntro + squiggle + currentSearchResult;
 
-		String^ MyString = gcnew String(endResult.c_str()); //convert std string to System String to output in displayWindow
-		displayWindow->Text = MyString;
-	
-}
-};
+			if (endResult == "\n")
+				endResult = "No Quote matches the given Input according to Letters, Authors, Themes, or Years.";
+
+			String^ MyString = gcnew String(endResult.c_str()); //convert std string to System String to output in displayWindow
+			displayWindow->Text = MyString;
+		}
+
+	}
+	};
 }
