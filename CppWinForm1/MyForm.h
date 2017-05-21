@@ -223,9 +223,10 @@ namespace CppWinForm1 {
 			// 
 			// searchAllEvent
 			// 
-			this->searchAllEvent->Location = System::Drawing::Point(12, 38);
+			this->searchAllEvent->Location = System::Drawing::Point(16, 56);
+			this->searchAllEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->searchAllEvent->Name = L"searchAllEvent";
-			this->searchAllEvent->Size = System::Drawing::Size(102, 23);
+			this->searchAllEvent->Size = System::Drawing::Size(136, 34);
 			this->searchAllEvent->TabIndex = 3;
 			this->searchAllEvent->Text = L"Search All";
 			this->searchAllEvent->UseVisualStyleBackColor = true;
@@ -233,9 +234,10 @@ namespace CppWinForm1 {
 			// 
 			// inputBar
 			// 
-			this->inputBar->Location = System::Drawing::Point(12, 12);
+			this->inputBar->Location = System::Drawing::Point(16, 18);
+			this->inputBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->inputBar->Name = L"inputBar";
-			this->inputBar->Size = System::Drawing::Size(642, 21);
+			this->inputBar->Size = System::Drawing::Size(855, 27);
 			this->inputBar->TabIndex = 0;
 			this->inputBar->Text = L"Enter your search here";
 			this->inputBar->TextChanged += gcnew System::EventHandler(this, &MyForm::inputBar_TextChanged);
@@ -246,18 +248,20 @@ namespace CppWinForm1 {
 			this->displayWindow->DetectUrls = false;
 			this->displayWindow->Font = (gcnew System::Drawing::Font(L"Century", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->displayWindow->Location = System::Drawing::Point(12, 67);
+			this->displayWindow->Location = System::Drawing::Point(16, 98);
+			this->displayWindow->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->displayWindow->Name = L"displayWindow";
-			this->displayWindow->Size = System::Drawing::Size(642, 464);
-			this->displayWindow->TabIndex = 5;
+			this->displayWindow->Size = System::Drawing::Size(856, 678);
+			this->displayWindow->TabIndex = 0;
 			this->displayWindow->TabStop = false;
 			this->displayWindow->Text = L"";
 			// 
 			// searchQuoteEvent
 			// 
-			this->searchQuoteEvent->Location = System::Drawing::Point(120, 38);
+			this->searchQuoteEvent->Location = System::Drawing::Point(160, 56);
+			this->searchQuoteEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->searchQuoteEvent->Name = L"searchQuoteEvent";
-			this->searchQuoteEvent->Size = System::Drawing::Size(102, 23);
+			this->searchQuoteEvent->Size = System::Drawing::Size(136, 34);
 			this->searchQuoteEvent->TabIndex = 4;
 			this->searchQuoteEvent->Text = L"Search Quotes";
 			this->searchQuoteEvent->UseVisualStyleBackColor = true;
@@ -265,9 +269,10 @@ namespace CppWinForm1 {
 			// 
 			// themeSearchEvent
 			// 
-			this->themeSearchEvent->Location = System::Drawing::Point(336, 38);
+			this->themeSearchEvent->Location = System::Drawing::Point(448, 56);
+			this->themeSearchEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->themeSearchEvent->Name = L"themeSearchEvent";
-			this->themeSearchEvent->Size = System::Drawing::Size(102, 23);
+			this->themeSearchEvent->Size = System::Drawing::Size(136, 34);
 			this->themeSearchEvent->TabIndex = 6;
 			this->themeSearchEvent->Text = L"Search Themes";
 			this->themeSearchEvent->UseVisualStyleBackColor = true;
@@ -275,9 +280,10 @@ namespace CppWinForm1 {
 			// 
 			// authorSearchEvent
 			// 
-			this->authorSearchEvent->Location = System::Drawing::Point(228, 38);
+			this->authorSearchEvent->Location = System::Drawing::Point(304, 56);
+			this->authorSearchEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->authorSearchEvent->Name = L"authorSearchEvent";
-			this->authorSearchEvent->Size = System::Drawing::Size(102, 23);
+			this->authorSearchEvent->Size = System::Drawing::Size(136, 34);
 			this->authorSearchEvent->TabIndex = 5;
 			this->authorSearchEvent->Text = L"Search Authors";
 			this->authorSearchEvent->UseVisualStyleBackColor = true;
@@ -285,9 +291,10 @@ namespace CppWinForm1 {
 			// 
 			// yearSearchEvent
 			// 
-			this->yearSearchEvent->Location = System::Drawing::Point(444, 38);
+			this->yearSearchEvent->Location = System::Drawing::Point(592, 56);
+			this->yearSearchEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->yearSearchEvent->Name = L"yearSearchEvent";
-			this->yearSearchEvent->Size = System::Drawing::Size(102, 23);
+			this->yearSearchEvent->Size = System::Drawing::Size(136, 34);
 			this->yearSearchEvent->TabIndex = 7;
 			this->yearSearchEvent->Text = L"Search Years";
 			this->yearSearchEvent->UseVisualStyleBackColor = true;
@@ -295,9 +302,10 @@ namespace CppWinForm1 {
 			// 
 			// displayAllEvent
 			// 
-			this->displayAllEvent->Location = System::Drawing::Point(552, 38);
+			this->displayAllEvent->Location = System::Drawing::Point(736, 56);
+			this->displayAllEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->displayAllEvent->Name = L"displayAllEvent";
-			this->displayAllEvent->Size = System::Drawing::Size(102, 23);
+			this->displayAllEvent->Size = System::Drawing::Size(136, 34);
 			this->displayAllEvent->TabIndex = 8;
 			this->displayAllEvent->Text = L"Display All";
 			this->displayAllEvent->UseVisualStyleBackColor = true;
@@ -306,9 +314,10 @@ namespace CppWinForm1 {
 			// binaryOption
 			// 
 			this->binaryOption->AutoSize = true;
-			this->binaryOption->Location = System::Drawing::Point(660, 12);
+			this->binaryOption->Location = System::Drawing::Point(880, 18);
+			this->binaryOption->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->binaryOption->Name = L"binaryOption";
-			this->binaryOption->Size = System::Drawing::Size(173, 17);
+			this->binaryOption->Size = System::Drawing::Size(232, 23);
 			this->binaryOption->TabIndex = 1;
 			this->binaryOption->TabStop = true;
 			this->binaryOption->Text = L"Search by Keywords and Letters";
@@ -318,9 +327,10 @@ namespace CppWinForm1 {
 			// letterOption
 			// 
 			this->letterOption->AutoSize = true;
-			this->letterOption->Location = System::Drawing::Point(660, 41);
+			this->letterOption->Location = System::Drawing::Point(880, 60);
+			this->letterOption->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->letterOption->Name = L"letterOption";
-			this->letterOption->Size = System::Drawing::Size(216, 17);
+			this->letterOption->Size = System::Drawing::Size(296, 23);
 			this->letterOption->TabIndex = 2;
 			this->letterOption->Text = L"Binary Search (Authors and Themes Only)";
 			this->letterOption->UseVisualStyleBackColor = true;
@@ -328,41 +338,46 @@ namespace CppWinForm1 {
 			// 
 			// quoteAddBar
 			// 
-			this->quoteAddBar->Location = System::Drawing::Point(3, 3);
+			this->quoteAddBar->Location = System::Drawing::Point(4, 4);
+			this->quoteAddBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->quoteAddBar->Name = L"quoteAddBar";
-			this->quoteAddBar->Size = System::Drawing::Size(212, 21);
+			this->quoteAddBar->Size = System::Drawing::Size(281, 27);
 			this->quoteAddBar->TabIndex = 10;
 			this->quoteAddBar->Text = L"Enter Quote Here";
 			// 
 			// authorAddBar
 			// 
-			this->authorAddBar->Location = System::Drawing::Point(3, 83);
+			this->authorAddBar->Location = System::Drawing::Point(4, 112);
+			this->authorAddBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->authorAddBar->Name = L"authorAddBar";
-			this->authorAddBar->Size = System::Drawing::Size(212, 21);
+			this->authorAddBar->Size = System::Drawing::Size(281, 27);
 			this->authorAddBar->TabIndex = 12;
 			this->authorAddBar->Text = L"Enter Author Here";
 			// 
 			// themeAddBar
 			// 
-			this->themeAddBar->Location = System::Drawing::Point(3, 30);
+			this->themeAddBar->Location = System::Drawing::Point(4, 39);
+			this->themeAddBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->themeAddBar->Name = L"themeAddBar";
-			this->themeAddBar->Size = System::Drawing::Size(212, 21);
+			this->themeAddBar->Size = System::Drawing::Size(281, 27);
 			this->themeAddBar->TabIndex = 11;
 			this->themeAddBar->Text = L"Enter Theme Here";
 			// 
 			// quotePreview
 			// 
-			this->quotePreview->Location = System::Drawing::Point(3, 205);
+			this->quotePreview->Location = System::Drawing::Point(4, 300);
+			this->quotePreview->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->quotePreview->Name = L"quotePreview";
-			this->quotePreview->Size = System::Drawing::Size(212, 212);
+			this->quotePreview->Size = System::Drawing::Size(281, 308);
 			this->quotePreview->TabIndex = 16;
-			this->quotePreview->Text = L"\n\n\n\n\n\n                         Preview is shown here";
+			this->quotePreview->Text = L"\n\n\n\n\n\n                 Preview is shown here\n";
 			// 
 			// previewEvent
 			// 
-			this->previewEvent->Location = System::Drawing::Point(3, 176);
+			this->previewEvent->Location = System::Drawing::Point(4, 258);
+			this->previewEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->previewEvent->Name = L"previewEvent";
-			this->previewEvent->Size = System::Drawing::Size(212, 23);
+			this->previewEvent->Size = System::Drawing::Size(283, 34);
 			this->previewEvent->TabIndex = 15;
 			this->previewEvent->Text = L"Preview Quote to Enter";
 			this->previewEvent->UseVisualStyleBackColor = true;
@@ -370,9 +385,10 @@ namespace CppWinForm1 {
 			// 
 			// addQuoteEvent
 			// 
-			this->addQuoteEvent->Location = System::Drawing::Point(3, 423);
+			this->addQuoteEvent->Location = System::Drawing::Point(4, 616);
+			this->addQuoteEvent->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->addQuoteEvent->Name = L"addQuoteEvent";
-			this->addQuoteEvent->Size = System::Drawing::Size(212, 23);
+			this->addQuoteEvent->Size = System::Drawing::Size(283, 34);
 			this->addQuoteEvent->TabIndex = 25;
 			this->addQuoteEvent->Text = L"Add Quote";
 			this->addQuoteEvent->UseVisualStyleBackColor = true;
@@ -381,28 +397,30 @@ namespace CppWinForm1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 160);
+			this->label2->Location = System::Drawing::Point(4, 216);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(209, 13);
+			this->label2->Size = System::Drawing::Size(244, 38);
 			this->label2->TabIndex = 27;
 			this->label2->Text = L"Click to Preview and ensure Input is correct";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(3, 67);
+			this->label3->Location = System::Drawing::Point(4, 89);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(146, 13);
+			this->label3->Size = System::Drawing::Size(202, 19);
 			this->label3->TabIndex = 28;
 			this->label3->Text = L"If no Author available, enter 0";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(42, 107);
-			this->label4->Margin = System::Windows::Forms::Padding(42, 0, 3, 0);
+			this->label4->Location = System::Drawing::Point(56, 143);
+			this->label4->Margin = System::Windows::Forms::Padding(56, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(134, 13);
+			this->label4->Size = System::Drawing::Size(187, 19);
 			this->label4->TabIndex = 31;
 			this->label4->Text = L"If no Year available, enter 0";
 			// 
@@ -422,55 +440,59 @@ namespace CppWinForm1 {
 			this->flowLayoutPanel1->Controls->Add(this->previewEvent);
 			this->flowLayoutPanel1->Controls->Add(this->quotePreview);
 			this->flowLayoutPanel1->Controls->Add(this->addQuoteEvent);
-			this->flowLayoutPanel1->Location = System::Drawing::Point(660, 84);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(880, 123);
+			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(220, 447);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(293, 653);
 			this->flowLayoutPanel1->TabIndex = 32;
 			this->flowLayoutPanel1->Visible = false;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(3, 54);
+			this->label1->Location = System::Drawing::Point(4, 70);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(179, 13);
+			this->label1->Size = System::Drawing::Size(246, 19);
 			this->label1->TabIndex = 33;
 			this->label1->Text = L"Ensure Author is properly capitalized";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(25, 120);
-			this->label6->Margin = System::Windows::Forms::Padding(25, 0, 3, 0);
+			this->label6->Location = System::Drawing::Point(33, 162);
+			this->label6->Margin = System::Windows::Forms::Padding(33, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(151, 13);
+			this->label6->Size = System::Drawing::Size(235, 19);
 			this->label6->TabIndex = 37;
 			this->label6->Text = L"Birth Year         ----         Death Year";
 			// 
 			// birthAddBar
 			// 
-			this->birthAddBar->Location = System::Drawing::Point(3, 136);
+			this->birthAddBar->Location = System::Drawing::Point(4, 185);
+			this->birthAddBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->birthAddBar->Mask = L"0000";
 			this->birthAddBar->Name = L"birthAddBar";
-			this->birthAddBar->Size = System::Drawing::Size(93, 21);
+			this->birthAddBar->Size = System::Drawing::Size(123, 27);
 			this->birthAddBar->TabIndex = 13;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(102, 138);
-			this->label5->Margin = System::Windows::Forms::Padding(3, 5, 3, 0);
+			this->label5->Location = System::Drawing::Point(135, 188);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 7, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->Size = System::Drawing::Size(19, 19);
 			this->label5->TabIndex = 36;
 			this->label5->Text = L"--";
 			// 
 			// deathAddBar
 			// 
-			this->deathAddBar->Location = System::Drawing::Point(121, 136);
+			this->deathAddBar->Location = System::Drawing::Point(162, 185);
+			this->deathAddBar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->deathAddBar->Mask = L"0000";
 			this->deathAddBar->Name = L"deathAddBar";
-			this->deathAddBar->Size = System::Drawing::Size(93, 21);
+			this->deathAddBar->Size = System::Drawing::Size(123, 27);
 			this->deathAddBar->TabIndex = 14;
 			// 
 			// linkLabel1
@@ -480,7 +502,8 @@ namespace CppWinForm1 {
 			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Century", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->linkLabel1->LinkColor = System::Drawing::SystemColors::HotTrack;
-			this->linkLabel1->Location = System::Drawing::Point(701, 61);
+			this->linkLabel1->Location = System::Drawing::Point(935, 89);
+			this->linkLabel1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->linkLabel1->Name = L"linkLabel1";
 			this->linkLabel1->Size = System::Drawing::Size(144, 20);
 			this->linkLabel1->TabIndex = 9;
@@ -490,9 +513,9 @@ namespace CppWinForm1 {
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 19);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(892, 543);
+			this->ClientSize = System::Drawing::Size(1189, 794);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->letterOption);
@@ -505,8 +528,9 @@ namespace CppWinForm1 {
 			this->Controls->Add(this->displayWindow);
 			this->Controls->Add(this->inputBar);
 			this->Controls->Add(this->searchAllEvent);
-			this->Font = (gcnew System::Drawing::Font(L"Calibri", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MyForm";
 			this->Text = L"Quote-Search 3";
 			this->flowLayoutPanel1->ResumeLayout(false);
